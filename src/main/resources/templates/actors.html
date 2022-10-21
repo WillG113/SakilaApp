@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+
+  <h2> Actor List </h2>
+  <table>
+    <tr th:each="actor : ${actorList}">
+      <td th:text="${actor.actorFirstname}"></td>
+      <td th:text="${actor.actorLastname}"></td>
+    </tr>
+  </table>
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+
+  <h2 th:text="${film.title}"></h2>
+
+  <br>
+
+  <p th:text="${film.desc}"></p>
+
+  <br>
+  <br>
+
+  <h2> Actor List </h2>
+
+  <table>
+    <tr th:each="actor : ${actorList}">
+
+      <td th:text="${actor.filmID}"></td>
+      <td th:text="${actor.actor.actorID}"></td>
+      <td th:text="${actor.actor.actorFirstname}"></td>
+      <td th:text="${actor.actor.actorLastname}"></td>
+
+    </tr>
+  </table>
+
+</div>
+</div>
+</body>
+</html>

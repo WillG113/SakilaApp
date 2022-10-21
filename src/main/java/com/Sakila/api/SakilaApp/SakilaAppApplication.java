@@ -3,12 +3,17 @@ package com.Sakila.api.SakilaApp;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.*;
+import org.springframework.web.servlet.*;
+
+import java.util.*;
 
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/")
 @CrossOrigin
 public class SakilaAppApplication {
 
@@ -16,25 +21,34 @@ public class SakilaAppApplication {
 	private ActorRepository actorRepository;
 	private FilmRespository filmRespository;
 	private AddressRepository addressRepository;
+	private FilmActorRepository filmActorRepository;
 
-	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, AddressRepository addressRepository){
+	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, AddressRepository addressRepository, FilmActorRepository filmActorRepository){
 		this.actorRepository = actorRepository;
 		this.filmRespository = filmRespository;
 		this.addressRepository = addressRepository;
+		this.filmActorRepository = filmActorRepository;
 	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
 
 	@GetMapping("/actors")
-	Iterable<Actor> getAllActors() {
-		return actorRepository.findAll();
+	public ModelAndView getAllActors() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("actors");
+		modelAndView.addObject("actorList", actorRepository.findAll());
+		return modelAndView;
 	}
 
 	@GetMapping("/actors/{id}")
-	Actor getActor(@PathVariable int id) {
-		return actorRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+	public ModelAndView getActor(@PathVariable int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("actors");
+		modelAndView.addObject("actorList", actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found")));
+		return modelAndView;
 	}
 
 	@PostMapping("/actors/{fname}+{sname}")
@@ -65,13 +79,21 @@ public class SakilaAppApplication {
 	// ------------------------------------------------------
 
 	@GetMapping("/films")
-	Iterable<Film> getAllFilms() {
-		return filmRespository.findAll();
+	public ModelAndView getAllFilms() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("films");
+		modelAndView.addObject("filmList", filmRespository.findAll());
+		return modelAndView;
 	}
 
 	@GetMapping("/films/{id}")
-	Film getFilm(@PathVariable int id) {
-		return filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+	public ModelAndView getFilm(@PathVariable int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("specificFilm");
+		modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
+		modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
+		System.out.println(filmActorRepository.findByFilmID(id));
+		return modelAndView;
 	}
 
 	@PostMapping("/films/{title}+{desc}+{length}")

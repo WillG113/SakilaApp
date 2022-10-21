@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+
+  <h2> Film List </h2>
+  <table>
+    <tr th:each="film : ${filmList}">
+      <td th:text="${film.title}"></td>
+      <td th:text="${film.desc}"></td>
+    </tr>
+  </table>
+
+</div>
+</div>
+</body>
+</html>
