@@ -21,8 +21,6 @@ public class FilmActor {
     @Column(name = "actor_id")
     int actorID;
 
-
-
     @ManyToOne()
     @JoinColumn(name = "actor_id", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
@@ -53,7 +51,6 @@ public class FilmActor {
     public void setActorID(int actorID) {
         this.actorID = actorID;
     }
-
 
     public Actor getActor() {
         return actor;
