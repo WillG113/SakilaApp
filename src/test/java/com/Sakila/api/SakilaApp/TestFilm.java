@@ -15,7 +15,7 @@ public class TestFilm {
 
         Assertions.assertEquals("testTitle", testFilm.getTitle());
         Assertions.assertEquals("testDesc", testFilm.getDesc());
-        Assertions.assertEquals(12, testFilm.getLength());
+        Assertions.assertEquals(25, testFilm.getLength());
 
     }
 
@@ -94,7 +94,7 @@ public class TestFilm {
     @Test
     public void testSetLength() {
 
-        Assertions.assertEquals(12, testFilm.getLength());
+        Assertions.assertEquals(25, testFilm.getLength());
         testFilm.setLength(3);
         Assertions.assertEquals(3, testFilm.getLength());
 

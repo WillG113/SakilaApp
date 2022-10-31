@@ -13,13 +13,12 @@ import java.io.*;
 @Table(name = "film_actor")
 public class FilmActor {
 
-
-    @Column(name = "film_id")
-    int filmID;
-
     @Id
     @Column(name = "actor_id")
     int actorID;
+
+    @Column(name = "film_id")
+    int filmID;
 
     @ManyToOne()
     @JoinColumn(name = "actor_id", insertable = false, updatable = false)
