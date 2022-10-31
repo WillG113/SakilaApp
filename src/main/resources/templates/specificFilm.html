@@ -13,6 +13,12 @@
 
   <br>
 
+  <p th:text="'Rating: ' + ${film.rating}"></p>
+  <p th:text="'Rent Duration: ' + ${film.rentDuration} + ' Months'"></p>
+  <p th:text="'Rent Cost: £' + ${film.rentRate} + '/m'"></p>
+  <p th:text="'Replacement Cost: £' + ${film.replacementCost}"></p>
+  <p th:text="'Length: ' + ${film.length} + ' Minutes'"></p>
+
   <!-- <image th:src="${image}"></image> -->
 
   <br>
@@ -22,7 +28,6 @@
   <table>
     <tr th:each="actor : ${actorList}">
 
-      <td th:text="${actor.filmID}"></td>
       <td th:text="${actor.actor.actorID}"></td>
       <td><a href="http://localhost:8080" th:href="@{|/actors/${actor.actor.actorID}|}" th:text="${actor.actor.actorFirstname} + ' ' + ${actor.actor.actorLastname}"></a></td>
     </tr>

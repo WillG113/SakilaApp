@@ -34,7 +34,7 @@ public class SakilaAppApplication {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
 
-	@GetMapping("/actorsapi")
+	@GetMapping("/api/actors")
 	Iterable<Actor> getAllActorsAPI() {
 		return actorRepository.findAll();
 	}
@@ -62,6 +62,12 @@ public class SakilaAppApplication {
 //		}
 
 		return modelAndView;
+	}
+
+	@GetMapping("/api/actors/{id}")
+	Actor getActorAPI(@PathVariable int id) {
+		return actorRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+
 	}
 
 	@PostMapping("/actors/{fname}+{sname}")
@@ -92,7 +98,7 @@ public class SakilaAppApplication {
 	// ------------------------------------------------------
 
 
-	@GetMapping("/filmsapi")
+	@GetMapping("/api/films")
 	Iterable<Film> getAllFilmsAPI() {
 		return filmRespository.findAll();
 	}
@@ -105,7 +111,7 @@ public class SakilaAppApplication {
 		return modelAndView;
 	}
 
-	@GetMapping("/filmsapi/{id}")
+	@GetMapping("/api/films/{id}")
 	Film getFilmAPI(@PathVariable int id) {
 		return filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
 	}
@@ -129,14 +135,14 @@ public class SakilaAppApplication {
 	}
 
 	@PostMapping("/films/{title}+{desc}+{length}")
-	public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable int length){
-		Film newFilm = new Film(title, desc, length);
+	public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
+		Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating);
 		return filmRespository.save(newFilm);
 	}
 
 	@PutMapping("/films/{id}+{title}+{desc}+{length}")
-	public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable int length){
-		Film newFilm = new Film(title, desc, length);
+	public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
+		Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating);
 
 		return filmRespository.findById(id).map(film -> {
 			film.setTitle(newFilm.getTitle());
@@ -156,12 +162,12 @@ public class SakilaAppApplication {
 
 	// ------------------------------------------------------
 
-	@GetMapping("/address")
+	@GetMapping("/api/address")
 	Iterable<Address> getAllAddresses() {
 		return addressRepository.findAll();
 	}
 
-	@GetMapping("/address/{id}")
+	@GetMapping("/api/address/{id}")
 	Address getAddress(@PathVariable int id) {
 		return addressRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
 	}

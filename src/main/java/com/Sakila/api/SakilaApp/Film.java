@@ -18,15 +18,34 @@ public class Film {
     @Column(name = "description")
     String desc;
 
+    @Column(name = "release_year")
+    String releaseYear;
+
+    @Column(name = "rental_duration")
+    int rentDuration;
+
+    @Column(name = "rental_rate")
+    double rentRate;
+
     @Column(name = "length")
     int length;
 
+    @Column(name = "replacement_cost")
+    double replacementCost;
+
+    @Column(name = "rating")
+    String rating;
 
     //Constructor
-    public Film(String title, String desc, int length) {
+    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating) {
         this.title = title;
         this.desc = desc;
+        this.releaseYear = releaseYear;
+        this.rentDuration = rentDuration;
+        this.rentRate = rentRate;
         this.length = length;
+        this.replacementCost = replacementCost;
+        this.rating = rating;
     }
 
     public Film() {
@@ -57,6 +76,46 @@ public class Film {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getReleaseYear() {
+        return releaseYear;
+    }
+
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
+    }
+
+    public int getRentDuration() {
+        return rentDuration;
+    }
+
+    public void setRentDuration(int rentDuration) {
+        this.rentDuration = rentDuration;
+    }
+
+    public double getRentRate() {
+        return rentRate;
+    }
+
+    public void setRentRate(double rentRate) {
+        this.rentRate = rentRate;
+    }
+
+    public double getReplacementCost() {
+        return replacementCost;
+    }
+
+    public void setReplacementCost(double replacementCost) {
+        this.replacementCost = replacementCost;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public int getLength() {

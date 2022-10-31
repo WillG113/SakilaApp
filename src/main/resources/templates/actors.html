@@ -8,8 +8,7 @@
   <h2> Actor List </h2>
   <table>
     <tr th:each="actor : ${actorList}">
-      <td th:text="${actor.actorFirstname}"></td>
-      <td th:text="${actor.actorLastname}"></td>
+      <td><a href="http://localhost:8080" th:href="@{|/actors/${actor.actorID}|}" th:text="${actor.actorFirstname} + ' ' + ${actor.actorLastname}"></a></td>
     </tr>
   </table>
 
