@@ -19,6 +19,14 @@ public class TestAddress {
     }
 
     @Test
+    public void testSetAddressID() {
+
+        testAddress.setAddressID(3);
+        Assertions.assertEquals(3, testAddress.getAddressID());
+
+    }
+
+    @Test
     public void testSetAddress() {
 
         Assertions.assertEquals("testAddress", testAddress.getAddress());
