@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import org.springframework.web.servlet.*;
 
+import java.util.*;
+
 
 @SpringBootApplication
 @RestController
@@ -67,7 +69,18 @@ public class SakilaAppApplication {
 	@GetMapping("/api/actors/{id}")
 	Actor getActorAPI(@PathVariable int id) {
 		return actorRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+	}
 
+	//Finds films based on a certain actor
+	@GetMapping("/api/filmactors/{id}")
+	List<Film> getFilmActorAPI(@PathVariable int id) {
+		return filmRespository.findByActorID(id);
+	}
+
+	//Finds films based on a certain actor
+	@GetMapping("/api/actorfilms/{id}")
+	List<FilmActor> getActorFilmsAPI(@PathVariable int id) {
+		return filmActorRepository.findByFilmID(id);
 	}
 
 	@PostMapping("/actors/{fname}+{sname}")
