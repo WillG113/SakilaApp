@@ -34,6 +34,11 @@ public class SakilaAppApplication {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
 
+	@GetMapping("/actorsapi")
+	Iterable<Actor> getAllActorsAPI() {
+		return actorRepository.findAll();
+	}
+
 	@GetMapping("/actors")
 	public ModelAndView getAllActors() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -47,14 +52,14 @@ public class SakilaAppApplication {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificActor");
 		modelAndView.addObject("actorList", actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found")));
-		modelAndView.addObject("filmList", filmActorRepository.findByActorID(id));
+		modelAndView.addObject("filmList", filmRespository.findByActorID(id));
 
-		// REST REQUEST FUNCTION
-		Actor input = actorRepository.findById(id).orElse(input = null);
-		String name = input.getActorFirstname() + " " + input.getActorLastname();
-		if(input != null) {
-			modelAndView.addObject("image", fetchMethod(postMethod(name)));
-		}
+//		// REST REQUEST FUNCTION
+//		Actor input = actorRepository.findById(id).orElse(input = null);
+//		String name = input.getActorFirstname() + " " + input.getActorLastname();
+//		if(input != null) {
+//			modelAndView.addObject("image", fetchMethod(postMethod(name)));
+//		}
 
 		return modelAndView;
 	}
@@ -86,12 +91,23 @@ public class SakilaAppApplication {
 
 	// ------------------------------------------------------
 
+
+	@GetMapping("/filmsapi")
+	Iterable<Film> getAllFilmsAPI() {
+		return filmRespository.findAll();
+	}
+
 	@GetMapping("/films")
 	public ModelAndView getAllFilms() {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("films");
 		modelAndView.addObject("filmList", filmRespository.findAll());
 		return modelAndView;
+	}
+
+	@GetMapping("/filmsapi/{id}")
+	Film getFilmAPI(@PathVariable int id) {
+		return filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
 	}
 
 	@GetMapping("/films/{id}")
@@ -102,12 +118,12 @@ public class SakilaAppApplication {
 		modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
 		System.out.println(filmActorRepository.findByFilmID(id));
 
-		// REST REQUEST FUNCTION
-		Film input = filmRespository.findById(id).orElse(input = null);
-
-		if(input != null) {
-			modelAndView.addObject("image", fetchMethod(postMethod(input.getDesc())));
-		}
+//		// REST REQUEST FUNCTION
+//		Film input = filmRespository.findById(id).orElse(input = null);
+//
+//		if(input != null) {
+//			modelAndView.addObject("image", fetchMethod(postMethod(input.getDesc())));
+//		}
 
 		return modelAndView;
 	}

@@ -7,17 +7,18 @@
 
   <h2 th:text="${actorList.actorFirstname} + ' ' + ${actorList.actorLastname}"></h2>
   <br>
-  <image th:src="${image}"></image>
+  <!-- <image th:src="${image}"></image> -->
   <br>
   <p> A description or something is going to go here! </p>
 
   <br>
 
-  <p> A table of films starred in here</p>
+  <h2> Films Starred In: </h2>
   <table>
     <tr th:each="film : ${filmList}">
 
       <td th:text="${film.filmID}"></td>
+      <td><a href="http://localhost:8080" th:href="@{|/films/${film.filmID}|}" th:text="${film.title}"></a></td>
 
     </tr>
   </table>

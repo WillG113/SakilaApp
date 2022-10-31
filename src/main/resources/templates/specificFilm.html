@@ -13,7 +13,7 @@
 
   <br>
 
-  <image th:src="${image}"></image>
+  <!-- <image th:src="${image}"></image> -->
 
   <br>
 
@@ -24,9 +24,7 @@
 
       <td th:text="${actor.filmID}"></td>
       <td th:text="${actor.actor.actorID}"></td>
-      <td th:text="${actor.actor.actorFirstname}"></td>
-      <td th:text="${actor.actor.actorLastname}"></td>
-
+      <td><a href="http://localhost:8080" th:href="@{|/actors/${actor.actor.actorID}|}" th:text="${actor.actor.actorFirstname} + ' ' + ${actor.actor.actorLastname}"></a></td>
     </tr>
   </table>
 
