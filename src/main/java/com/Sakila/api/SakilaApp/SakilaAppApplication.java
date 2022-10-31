@@ -1,14 +1,13 @@
 package com.Sakila.api.SakilaApp;
 
+import org.json.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.ui.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import org.springframework.web.servlet.*;
-
-import java.util.*;
 
 
 @SpringBootApplication
@@ -44,10 +43,19 @@ public class SakilaAppApplication {
 	}
 
 	@GetMapping("/actors/{id}")
-	public ModelAndView getActor(@PathVariable int id) {
+	public ModelAndView getActor(@PathVariable int id) throws JSONException {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("actors");
+		modelAndView.setViewName("specificActor");
 		modelAndView.addObject("actorList", actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found")));
+		modelAndView.addObject("filmList", filmActorRepository.findByActorID(id));
+
+		// REST REQUEST FUNCTION
+		Actor input = actorRepository.findById(id).orElse(input = null);
+		String name = input.getActorFirstname() + " " + input.getActorLastname();
+		if(input != null) {
+			modelAndView.addObject("image", fetchMethod(postMethod(name)));
+		}
+
 		return modelAndView;
 	}
 
@@ -87,12 +95,20 @@ public class SakilaAppApplication {
 	}
 
 	@GetMapping("/films/{id}")
-	public ModelAndView getFilm(@PathVariable int id) {
+	public ModelAndView getFilm(@PathVariable int id) throws JSONException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificFilm");
 		modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
 		modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
 		System.out.println(filmActorRepository.findByFilmID(id));
+
+		// REST REQUEST FUNCTION
+		Film input = filmRespository.findById(id).orElse(input = null);
+
+		if(input != null) {
+			modelAndView.addObject("image", fetchMethod(postMethod(input.getDesc())));
+		}
+
 		return modelAndView;
 	}
 
@@ -106,11 +122,11 @@ public class SakilaAppApplication {
 	public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable int length){
 		Film newFilm = new Film(title, desc, length);
 
-		return filmRespository.findById(id).map(actor -> {
-			newFilm.setTitle(newFilm.getTitle());
-			newFilm.setDesc((newFilm.getDesc()));
-			newFilm.setLength(newFilm.getLength());
-			return filmRespository.save(actor);
+		return filmRespository.findById(id).map(film -> {
+			film.setTitle(newFilm.getTitle());
+			film.setDesc((newFilm.getDesc()));
+			film.setLength(newFilm.getLength());
+			return filmRespository.save(film);
 		}).orElseGet(() -> {
 			newFilm.setFilmID(id);
 			return filmRespository.save(newFilm);
@@ -159,6 +175,70 @@ public class SakilaAppApplication {
 	@DeleteMapping("/address/{id}")
 	public void deleteAddress(@PathVariable int id) {
 		addressRepository.deleteById(id);
+	}
+
+	public class ResponseImage {
+		private String output;
+
+		public String getOutput() {
+			return output;
+		}
+	}
+
+
+	// --------------------------------- OTHER METHODS ----
+
+	public String fetchMethod(String URL) throws JSONException {
+		RestTemplate restTemplate= new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.add("Authorization", "Token eb17167cb82a167f776e27b2c6ef2039b1a4d8c8");
+		HttpEntity<String> entity = new HttpEntity<>("body", headers);
+		JSONObject obj;
+
+		do {
+
+			ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.GET, entity, String.class);
+			String test = response.getBody();
+
+			obj = new JSONObject(response.getBody());
+			System.out.println("trying");
+		}
+
+		while(!obj.getString("status").equals("succeeded"));
+
+		String imageSource = (String) obj.getJSONArray("output").get(0);
+		System.out.println("done");
+		return imageSource;
+	}
+
+
+	public String postMethod(String title) throws JSONException {
+
+		RestTemplate restTemplate= new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+
+		String test = "{\n" +
+				"  \"version\": \"5b703f0fa41880f918ab1b12c88a25b468c18639be17515259fb66a83f4ad0a4\",\n" +
+				"  \"input\": {\n" +
+				"    \"prompt\": \"" + title + "\"\n" +
+				"  }\n" +
+				"}";
+		JSONObject obj = new JSONObject(test);
+
+		headers.add("Authorization", "Token eb17167cb82a167f776e27b2c6ef2039b1a4d8c8");
+		HttpEntity<String> entity = new HttpEntity<>(obj.toString(), headers);
+
+		String URL = "https://api.replicate.com/v1/predictions";
+		ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.POST, entity, String.class);
+
+		String responseTest = response.getBody();
+
+		JSONObject objTest = new JSONObject(response.getBody());
+		String links = objTest.getJSONObject("urls").getString("get");
+
+		return links;
+
 	}
 
 }

@@ -8,10 +8,12 @@
   <h2> Film List </h2>
   <table>
     <tr th:each="film : ${filmList}">
-      <td th:text="${film.title}"></td>
+      <td th:text="${film.filmID}"></td>
+      <td><a href="http://localhost:8080" th:href="@{|/films/${film.filmID}|}" th:text="${film.title}"></a></td>
       <td th:text="${film.desc}"></td>
     </tr>
   </table>
+
 
 </div>
 </div>
