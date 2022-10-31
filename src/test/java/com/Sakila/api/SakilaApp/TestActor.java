@@ -6,6 +6,7 @@ public class TestActor {
 
     Actor testActor = new Actor("TestFirstname", "TestLastname");
 
+    Actor actor = new Actor();
 
     @Test
     public void testActorConstructor() {

@@ -8,6 +8,8 @@ public class TestFilm {
 
     Film testFilm = new Film("testTitle", "testDesc", 12);
 
+    Film film = new Film();
+
     @Test
     public void testFilmConstructor() {
 

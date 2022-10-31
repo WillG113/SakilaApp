@@ -6,6 +6,8 @@ public class TestAddress {
 
     Address testAddress = new Address("testAddress", "testDistrict", "testPostcode", "testID");
 
+    Address address = new Address();
+
     @Test
     public void testAddressConstructor() {
 

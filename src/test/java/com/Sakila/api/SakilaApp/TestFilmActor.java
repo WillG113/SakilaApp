@@ -8,6 +8,8 @@ public class TestFilmActor {
     Actor testActor = new Actor("testFname", "testSname");
     FilmActor testFA = new FilmActor(3, 3, testActor);
 
+    FilmActor filmActor = new FilmActor();
+
     @Test
     public void testFilmActorConstructor() {
 

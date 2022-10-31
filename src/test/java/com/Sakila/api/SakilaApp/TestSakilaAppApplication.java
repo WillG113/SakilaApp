@@ -23,7 +23,7 @@ public class TestSakilaAppApplication {
         System.out.println(response);
         Assertions.assertEquals(expectedObj, response.getBody());
 
-        
+
  */
     }
 
