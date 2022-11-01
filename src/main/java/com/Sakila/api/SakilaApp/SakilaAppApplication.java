@@ -10,6 +10,7 @@ import org.springframework.web.client.*;
 import org.springframework.web.servlet.*;
 
 import java.util.*;
+import java.util.concurrent.*;
 
 
 @SpringBootApplication
@@ -50,18 +51,18 @@ public class SakilaAppApplication {
 	}
 
 	@GetMapping("/actors/{id}")
-	public ModelAndView getActor(@PathVariable int id) throws JSONException {
+	public ModelAndView getActor(@PathVariable int id) throws JSONException, InterruptedException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificActor");
 		modelAndView.addObject("actorList", actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found")));
 		modelAndView.addObject("filmList", filmRespository.findByActorID(id));
 
 //		// REST REQUEST FUNCTION
-//		Actor input = actorRepository.findById(id).orElse(input = null);
-//		String name = input.getActorFirstname() + " " + input.getActorLastname();
-//		if(input != null) {
-//			modelAndView.addObject("image", fetchMethod(postMethod(name)));
-//		}
+		Actor input = actorRepository.findById(id).orElse(input = null);
+		String name = input.getActorFirstname() + " " + input.getActorLastname();
+		if(input != null) {
+			modelAndView.addObject("image", fetchMethod(postMethod(name)));
+		}
 
 		return modelAndView;
 	}
@@ -130,7 +131,7 @@ public class SakilaAppApplication {
 	}
 
 	@GetMapping("/films/{id}")
-	public ModelAndView getFilm(@PathVariable int id) throws JSONException {
+	public ModelAndView getFilm(@PathVariable int id) throws JSONException, InterruptedException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificFilm");
 		modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
@@ -138,12 +139,12 @@ public class SakilaAppApplication {
 		System.out.println(filmActorRepository.findByFilmID(id));
 
 //		// REST REQUEST FUNCTION
-//		Film input = filmRespository.findById(id).orElse(input = null);
-//
-//		if(input != null) {
-//			modelAndView.addObject("image", fetchMethod(postMethod(input.getDesc())));
-//		}
+		Film input = filmRespository.findById(id).orElse(input = null);
 
+		if(input != null) {
+			//fetchMethod(postMethod(input.getDesc()));
+			modelAndView.addObject("image", fetchMethod(postMethod(input.getDesc())));
+		}
 		return modelAndView;
 	}
 
@@ -223,27 +224,28 @@ public class SakilaAppApplication {
 
 	// --------------------------------- OTHER METHODS ----
 
-	public String fetchMethod(String URL) throws JSONException {
+	public String fetchMethod(String URL) throws JSONException, InterruptedException {
 		RestTemplate restTemplate= new RestTemplate();
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.add("Authorization", "Token eb17167cb82a167f776e27b2c6ef2039b1a4d8c8");
-		HttpEntity<String> entity = new HttpEntity<>("body", headers);
 		JSONObject obj;
 
 		do {
+			TimeUnit.MILLISECONDS.sleep(250);
 
-			ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.GET, entity, String.class);
+			ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/" + URL, String.class);
 			String test = response.getBody();
 
 			obj = new JSONObject(response.getBody());
 			System.out.println("trying");
 		}
 
-		while(!obj.getString("status").equals("succeeded"));
+		while(!obj.getString("finished").equals("1"));
 
-		String imageSource = (String) obj.getJSONArray("output").get(0);
-		System.out.println("done");
+		ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/status/" + URL, String.class);
+
+		obj = new JSONObject(response.getBody());
+		JSONArray test = obj.getJSONArray("generations");
+		String imageSource = test.getJSONObject(0).getString("img");
+
 		return imageSource;
 	}
 
@@ -253,24 +255,23 @@ public class SakilaAppApplication {
 		RestTemplate restTemplate= new RestTemplate();
 		HttpHeaders headers = new HttpHeaders();
 
-		String test = "{\n" +
-				"  \"version\": \"5b703f0fa41880f918ab1b12c88a25b468c18639be17515259fb66a83f4ad0a4\",\n" +
-				"  \"input\": {\n" +
-				"    \"prompt\": \"" + title + "\"\n" +
-				"  }\n" +
-				"}";
+		String test = "{\"prompt\": \"" + title + "\"}";
 		JSONObject obj = new JSONObject(test);
 
-		headers.add("Authorization", "Token eb17167cb82a167f776e27b2c6ef2039b1a4d8c8");
+		headers.add("apikey", "ob3dJ5IV9yr2bDppOIpeRw");
+		headers.add("accept", "application/json");
+		headers.add("Content-Type", "application/json");
+
 		HttpEntity<String> entity = new HttpEntity<>(obj.toString(), headers);
 
-		String URL = "https://api.replicate.com/v1/predictions";
+		String URL = "https://stablehorde.net/api/v2/generate/async";
 		ResponseEntity<String> response = restTemplate.exchange(URL, HttpMethod.POST, entity, String.class);
 
 		String responseTest = response.getBody();
+		System.out.println(responseTest);
 
 		JSONObject objTest = new JSONObject(response.getBody());
-		String links = objTest.getJSONObject("urls").getString("get");
+		String links = objTest.getString("id");
 
 		return links;
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Insert title here</title>
+<title>Specific Film</title>
 </head>
 <body>
 <div class="container">
@@ -20,6 +20,7 @@
   <p th:text="'Length: ' + ${film.length} + ' Minutes'"></p>
 
   <!-- <image th:src="${image}"></image> -->
+  <img th:src="'data:image/png;base64,' + ${image}">
 
   <br>
 

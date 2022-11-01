@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Insert title here</title>
+<title>Actors</title>
 </head>
 <body>
 <div class="container">
@@ -8,6 +8,7 @@
   <h2> Actor List </h2>
   <table>
     <tr th:each="actor : ${actorList}">
+      <td th:text="${actor.actorID}"></td>
       <td><a href="http://localhost:8080" th:href="@{|/actors/${actor.actorID}|}" th:text="${actor.actorFirstname} + ' ' + ${actor.actorLastname}"></a></td>
     </tr>
   </table>
