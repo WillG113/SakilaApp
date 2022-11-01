@@ -235,7 +235,7 @@ public class SakilaAppApplication {
 			String test = response.getBody();
 
 			obj = new JSONObject(response.getBody());
-			System.out.println("trying");
+			System.out.println("trying - queue position: " + obj.getString("queue_position"));
 		}
 
 		while(!obj.getString("finished").equals("1"));
@@ -245,7 +245,7 @@ public class SakilaAppApplication {
 		obj = new JSONObject(response.getBody());
 		JSONArray test = obj.getJSONArray("generations");
 		String imageSource = test.getJSONObject(0).getString("img");
-
+		System.out.println("done");
 		return imageSource;
 	}
 
@@ -258,7 +258,8 @@ public class SakilaAppApplication {
 		String test = "{\"prompt\": \"" + title + "\"}";
 		JSONObject obj = new JSONObject(test);
 
-		headers.add("apikey", "ob3dJ5IV9yr2bDppOIpeRw");
+		//headers.add("apikey", "ob3dJ5IV9yr2bDppOIpeRw");
+		headers.add("apikey", "tfgQCv8pHWSRiv8PRP94VA");
 		headers.add("accept", "application/json");
 		headers.add("Content-Type", "application/json");
 
