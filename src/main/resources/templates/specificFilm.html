@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Specific Film</title>
+<title th:text="${film.title}"></title>
 <link rel="stylesheet" href="../static/css/w3.css" th:href="@{/test.css}">
 </head>
 <body>
@@ -11,6 +11,8 @@
       <p th:text="${film.desc}"></p>
   </div>
 -->
+    <h4> <- Back to <a href="http://localhost:8080/films">Film List</a></h4>
+    <br>
 
   <div class="filmContainer">
     <div class="imageContainer">
@@ -24,13 +26,15 @@
          <h2 th:text="${film.title}"></h2>
          <p th:text="${film.desc}"></p>
          <br>
-        <h4 th:text="'Rating: ' + ${film.rating}"></h4>
+         <h4 th:text="'Rating: ' + ${film.rating}"></h4>
         <h4 th:text="'Length: ' + ${film.length} + ' Minutes'"></h4>
         <h4 th:text="'Category: ' + ${category}"></h4>
        <br>
        <h4 th:text="'Rent Duration: ' + ${film.rentDuration} + ' Months'"></h4>
        <h4 th:text="'Rent Cost: £' + ${film.rentRate} + '/m'"></h4>
        <h4 th:text="'Replacement Cost: £' + ${film.replacementCost}"></h4>
+         <br>
+         <button>Add to Cart</button>
       </div>
     </div>
   </div>
@@ -39,12 +43,12 @@
 
   <div class="actorDetails">
     <h2> Actor List </h2>
+      <p style="font-size:15px;opacity:0.75">Actors who star in this film</p>
 <!--
       <div class="grid">
               <button class="box" th:each="actor : ${actorList}"><a href="http://localhost:8080" th:href="@{|/actors/${actor.actor.actorID}|}" th:text="${actor.actor.actorFirstname} + ' ' + ${actor.actor.actorLastname}"></a></button>
       </div>
 -->
-    <p> Actors who play in this film </p>
     <table>
       <tr th:each="actor : ${actorList}">
         <td><a href="http://localhost:8080" th:href="@{|/actors/${actor.actor.actorID}|}" th:text="${actor.actor.actorFirstname} + ' ' + ${actor.actor.actorLastname}"></a></td>
@@ -54,13 +58,13 @@
   </div>
 
   <div class="otherFilms">
-      <h2> Films you might like: </h2>
+      <h2> Suggested Films </h2>
+      <p style="font-size:15px;opacity:0.75">Films of the same category</p>
 <!--
       <div class="grid">
               <button class="box" th:each="film : ${suggestedFilms}"><a href="http://localhost:8080" th:href="@{|/films/${film.filmID}|}" th:text="${film.film.title}"></a></button>
       </div>
       -->
-      <p> Films in the same category, will probs limit it to like 5 of something idk </p>
       <table>
         <tr th:each="film : ${suggestedFilms}">
           <td><a href="http://localhost:8080" th:href="@{|/films/${film.filmID}|}" th:text="${film.film.title}"></a></td></tr>

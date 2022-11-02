@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<title>Specific Actor</title>
+<title th:text="${actorList.actorFirstname} + ' ' + ${actorList.actorLastname}"></title>
+<link rel="stylesheet" href="../static/css/w3.css" th:href="@{/test.css}">
 </head>
 <body>
 <div class="container">
