@@ -7,25 +7,27 @@
 
   <h2 th:text="${film.title}"></h2>
 
-  <br>
-
   <p th:text="${film.desc}"></p>
 
   <br>
 
-  <p th:text="'Rating: ' + ${film.rating}"></p>
-  <p th:text="'Rent Duration: ' + ${film.rentDuration} + ' Months'"></p>
-  <p th:text="'Rent Cost: £' + ${film.rentRate} + '/m'"></p>
-  <p th:text="'Replacement Cost: £' + ${film.replacementCost}"></p>
-  <p th:text="'Length: ' + ${film.length} + ' Minutes'"></p>
+  <div>
+    <p th:text="'Rating: ' + ${film.rating}"></p>
+    <p th:text="'Rent Duration: ' + ${film.rentDuration} + ' Months'"></p>
+    <p th:text="'Rent Cost: £' + ${film.rentRate} + '/m'"></p>
+    <p th:text="'Replacement Cost: £' + ${film.replacementCost}"></p>
+    <p th:text="'Length: ' + ${film.length} + ' Minutes'"></p>
+    <p th:text="'Category: ' + ${category}"></p>
+  </div>
 
-  <!-- <image th:src="${image}"></image> -->
-  <img th:src="'data:image/png;base64,' + ${image}">
-
+  <div>
+    <img th:src="'data:image/png;base64,' + ${image}">
+  </div>
   <br>
 
   <h2> Actor List </h2>
 
+  <p> Actors who play in this film </p>
   <table>
     <tr th:each="actor : ${actorList}">
 
@@ -35,11 +37,14 @@
   </table>
 
 
-  <h2> Films Like This: </h2>
+  <h2> Films you might like: </h2>
 
-  <p> Will probs randomly select a couple movies to display here! </p>
+  <p> Films in the same category, will probs limit it to like 5 of something idk </p>
   <table>
+    <tr th:each="film : ${suggestedFilms}">
 
+      <td th:text="${film.film.filmID}"></td>
+      <td><a href="http://localhost:8080" th:href="@{|/films/${film.filmID}|}" th:text="${film.film.title}"></a></td></tr>
   </table>
 
 </div>

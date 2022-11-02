@@ -19,9 +19,11 @@ public class SpecificActorsStepDef {
     private CategoryRepository categoryRepo;
     @Autowired
     private FilmActorRepository filmActorRepo;
+    @Autowired
+    private CategoryFilmRepository categoryFilmRepo;
 
     @Autowired
-    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo);
+    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo, categoryFilmRepo);
 
 
     @Given("A user wants to find information about an actor by their ID")

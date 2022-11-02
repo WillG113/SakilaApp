@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
 import org.springframework.web.servlet.*;
 
+import javax.swing.text.html.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -24,12 +25,14 @@ public class SakilaAppApplication {
 	private FilmRespository filmRespository;
 	private CategoryRepository categoryRepository;
 	private FilmActorRepository filmActorRepository;
+	private CategoryFilmRepository categoryFilmRepository;
 
-	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository){
+	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository){
 		this.actorRepository = actorRepository;
 		this.filmRespository = filmRespository;
 		this.categoryRepository = categoryRepository;
 		this.filmActorRepository = filmActorRepository;
+		this.categoryFilmRepository = categoryFilmRepository;
 	}
 
 
@@ -135,6 +138,10 @@ public class SakilaAppApplication {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificFilm");
 		modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
+		List<CategoryFilm> category = categoryFilmRepository.findbyFilmID(id);
+		String filmCategory = categoryFilmRepository.findCategoryByFilmID(id);
+		modelAndView.addObject("suggestedFilms", categoryFilmRepository.findByCategoryID(category.get(0).categoryID));
+		modelAndView.addObject("category", filmCategory);
 		modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
 		System.out.println(filmActorRepository.findByFilmID(id));
 
@@ -181,6 +188,11 @@ public class SakilaAppApplication {
 		return categoryRepository.findAll();
 	}
 
+	@GetMapping("/api/filmcategories")
+	Iterable<CategoryFilm> getAllFilmCategoriesAPI() {
+		return categoryFilmRepository.findByCategoryID(3);
+	}
+
 	// --------------------------------- OTHER METHODS ----
 
 	public String fetchMethod(String URL) throws JSONException, InterruptedException {
@@ -215,6 +227,7 @@ public class SakilaAppApplication {
 		HttpHeaders headers = new HttpHeaders();
 
 		String test = "{\"prompt\": \"" + title + "\"}";
+		//String test = "{\n" + "  \"prompt\": \"" + title + "\",\n" + "  \"params\": {\n" + "    \"height\": 1024,\n" + "    \"width\": 1024\n" + "  }\n" +	"}";
 		JSONObject obj = new JSONObject(test);
 
 		//headers.add("apikey", "ob3dJ5IV9yr2bDppOIpeRw");
