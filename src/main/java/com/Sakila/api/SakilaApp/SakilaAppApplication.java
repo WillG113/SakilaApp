@@ -22,13 +22,13 @@ public class SakilaAppApplication {
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRespository filmRespository;
-	private AddressRepository addressRepository;
+	private CategoryRepository categoryRepository;
 	private FilmActorRepository filmActorRepository;
 
-	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, AddressRepository addressRepository, FilmActorRepository filmActorRepository){
+	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository){
 		this.actorRepository = actorRepository;
 		this.filmRespository = filmRespository;
-		this.addressRepository = addressRepository;
+		this.categoryRepository = categoryRepository;
 		this.filmActorRepository = filmActorRepository;
 	}
 
@@ -176,51 +176,10 @@ public class SakilaAppApplication {
 
 	// ------------------------------------------------------
 
-	@GetMapping("/api/address")
-	Iterable<Address> getAllAddresses() {
-		return addressRepository.findAll();
+	@GetMapping("/api/categories")
+	Iterable<Category> getAllCategoriesAPI() {
+		return categoryRepository.findAll();
 	}
-
-	@GetMapping("/api/address/{id}")
-	Address getAddress(@PathVariable int id) {
-		return addressRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
-	}
-
-	@PostMapping("/address/{address}+{district}+{postcode}+{cityID}")
-	public Address addAddress(@PathVariable String address, @PathVariable String district, @PathVariable String postcode,@PathVariable String cityID){
-		Address newAddress = new Address(address, district, postcode, cityID);
-		return addressRepository.save(newAddress);
-	}
-
-	@PutMapping("/address/{id}+{address}+{district}+{postcode}+{cityID}")
-	public Address replaceAddress(@PathVariable int id, @PathVariable String address, @PathVariable String district, @PathVariable String postcode, @PathVariable String cityid){
-		Address newAddress = new Address(address, district, postcode, cityid);
-
-		return addressRepository.findById(id).map(actor -> {
-			newAddress.setAddress(newAddress.getAddress());
-			newAddress.setDistrict((newAddress.getDistrict()));
-			newAddress.setPostcode(newAddress.getPostcode());
-			newAddress.setCityID(newAddress.getCityID());
-			return addressRepository.save(actor);
-		}).orElseGet(() -> {
-			newAddress.setAddressID(id);
-			return addressRepository.save(newAddress);
-		});
-	}
-
-	@DeleteMapping("/address/{id}")
-	public void deleteAddress(@PathVariable int id) {
-		addressRepository.deleteById(id);
-	}
-
-	public class ResponseImage {
-		private String output;
-
-		public String getOutput() {
-			return output;
-		}
-	}
-
 
 	// --------------------------------- OTHER METHODS ----
 
