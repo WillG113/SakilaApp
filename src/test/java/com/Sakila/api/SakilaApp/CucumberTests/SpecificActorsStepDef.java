@@ -24,7 +24,6 @@ public class SpecificActorsStepDef {
     private CategoryFilmRepository categoryFilmRepo;
 
 
-    @Autowired
     SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo, categoryFilmRepo);
 
 
