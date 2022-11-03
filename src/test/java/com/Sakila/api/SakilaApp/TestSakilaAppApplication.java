@@ -18,15 +18,8 @@ import static org.mockito.Mockito.*;
 
 import javax.servlet.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
 public class TestSakilaAppApplication {
 
-    RestTemplate restTemplate = new RestTemplate();
-    String URL = "http://localhost:8080/filmsapi/1";
-
-    @Autowired
-    private MockMvc mockMvc;
 
     FilmRespository filmRepo = mock(FilmRespository.class);
     ActorRepository actorRepo = mock(ActorRepository.class);
