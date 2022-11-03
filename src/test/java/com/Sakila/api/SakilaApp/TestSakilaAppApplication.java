@@ -40,7 +40,7 @@ public class TestSakilaAppApplication {
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
 
     @Test
-    public void testGetMapping() {
+    public void testGetAllFilms() {
 
         when(mockApp.getAllFilmsAPI()).thenReturn(allFilms);
 
@@ -49,6 +49,18 @@ public class TestSakilaAppApplication {
         Assertions.assertEquals(allFilms, actualResult);
 
     }
+
+    @Test
+    public void testGetSpecificFilm() throws Exception {
+
+        when(filmRespository.findById(5)).thenReturn(Optional.ofNullable(testFilm));
+
+        Film actualResult = mockApp.getFilmAPI(5);
+
+        Assertions.assertEquals(testFilm, actualResult);
+
+    }
+
 
 
 

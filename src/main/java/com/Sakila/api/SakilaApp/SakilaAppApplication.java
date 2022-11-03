@@ -130,7 +130,7 @@ public class SakilaAppApplication {
 
 	@GetMapping("/api/films/{id}")
 	Film getFilmAPI(@PathVariable int id) {
-		return filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+		return filmRespository.findById(id).orElseThrow(IndexOutOfBoundsException::new);
 	}
 
 	@GetMapping("/films/{id}")
