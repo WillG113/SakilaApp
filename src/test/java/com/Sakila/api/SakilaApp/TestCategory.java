@@ -6,6 +6,8 @@ public class TestCategory {
 
     Category testCategory = new Category(1, "Test");
 
+    Category category = new Category();
+
     @Test
     public void testCategoryConstructor() {
 
