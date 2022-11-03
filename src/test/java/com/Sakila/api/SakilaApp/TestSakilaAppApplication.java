@@ -125,13 +125,27 @@ public class TestSakilaAppApplication {
 
     }
 
-    // POST ----
+    // PUT ----
     @Test
     public void testUpdateFilm() {
 
         Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
+
+        Film f = mockApp.replaceFilm(1,"Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
+
+        Assertions.assertEquals(f1, f);
+
+    }
+
+    @Test
+    public void testUpdateFilm2() {
+
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
+
+        when(filmRespository.save(any(Film.class))).thenReturn(f1);
+        when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm));
 
         Film f = mockApp.replaceFilm(1,"Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
 
@@ -221,6 +235,7 @@ public class TestSakilaAppApplication {
 
     }
 
+    // POST ---------------
     @Test
     public void testAddActor() {
 
@@ -234,13 +249,14 @@ public class TestSakilaAppApplication {
 
     }
 
-    // POST ------
+    // PUT ------
     @Test
     public void testUpdateActor() {
 
         Actor a1 = new Actor("newName", "newSname");
 
         when(actorRepository.save(any(Actor.class))).thenReturn(a1);
+        when(actorRepository.findById(1)).thenReturn(Optional.ofNullable(testActor));
 
         Actor a = mockApp.replaceActor(1, "newName", "newSName");
 
