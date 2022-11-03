@@ -4,6 +4,7 @@ import org.json.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.*;
@@ -20,21 +21,24 @@ import java.util.concurrent.*;
 @CrossOrigin
 public class SakilaAppApplication {
 
+
 	@Autowired
 	private ActorRepository actorRepository;
 	private FilmRespository filmRespository;
 	private CategoryRepository categoryRepository;
 	private FilmActorRepository filmActorRepository;
 	private CategoryFilmRepository categoryFilmRepository;
-	private AiGeneration ai;
 
-	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, AiGeneration ai){
+	public AiGeneration ai = new AiGeneration();
+
+
+
+	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository){
 		this.actorRepository = actorRepository;
 		this.filmRespository = filmRespository;
 		this.categoryRepository = categoryRepository;
 		this.filmActorRepository = filmActorRepository;
 		this.categoryFilmRepository = categoryFilmRepository;
-		this.ai = ai;
 	}
 
 

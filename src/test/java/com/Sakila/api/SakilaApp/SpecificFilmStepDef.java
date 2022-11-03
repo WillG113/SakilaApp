@@ -23,10 +23,9 @@ public class SpecificFilmStepDef {
     @Autowired
     private CategoryFilmRepository categoryFilmRepo;
 
-    private AiGeneration ai;
 
     @Autowired
-    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo, categoryFilmRepo, ai);
+    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo, categoryFilmRepo);
 
 
     @Given("A user wants to find information about a film by it's ID")
