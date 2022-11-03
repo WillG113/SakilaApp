@@ -4,28 +4,43 @@ import org.json.*;
 import org.junit.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.boot.test.autoconfigure.web.servlet.*;
+import org.springframework.boot.test.context.*;
 import org.springframework.http.*;
+import org.springframework.mock.web.*;
+import org.springframework.test.web.servlet.*;
+import org.springframework.test.web.servlet.request.*;
+import org.springframework.test.web.servlet.result.*;
 import org.springframework.web.client.*;
 
+import javax.servlet.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc
 public class TestSakilaAppApplication {
 
     RestTemplate restTemplate = new RestTemplate();
     String URL = "http://localhost:8080/filmsapi/1";
 
+    @Autowired
+    private MockMvc mockMvc;
 
 
     @Test
-    public void testGetMapping() {
+    public void testGetMapping() throws Exception {
 
-/*
-        String expectedObj = "{\"filmID\":1,\"title\":\"TEST FILM\",\"desc\":\"Warren Nolte\",\"length\":25}";
+        //200 indicates success
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/films")).andExpect(MockMvcResultMatchers.status().is(200));
 
-        ResponseEntity<String> response = restTemplate.getForEntity(URL, String.class);
-        System.out.println(response);
-        Assertions.assertEquals(expectedObj, response.getBody());
+    }
 
+    @Test
+    public void testGetMappingFail() throws Exception {
 
- */
+        //200 indicates success
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/films/12")).andExpect(MockMvcResultMatchers.status().is(200));
+
     }
 
 }
