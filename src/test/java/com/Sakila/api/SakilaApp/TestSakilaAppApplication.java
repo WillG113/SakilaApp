@@ -44,10 +44,11 @@ public class TestSakilaAppApplication {
 
     @Test
     public void testMain() {
-        Actor actor = mock(Actor.class);
-        when(actorRepo.findById(1)).thenReturn(Optional.of(actor));
-        mockApp2.getActorAPI(1);
-        verify(mockApp2).getActorAPI(1);
+        Film f = mock(Film.class);
+        when(filmRepo.findById(5)).thenReturn(Optional.of(f));
+
+        mockApp2.getFilmAPI(5);
+        verify(mockApp2).getFilmAPI(5);
 
         //Assertions.assertThrows(IndexOutOfBoundsException.class, () -> mockApp2.getActorAPI(9999));
     }
