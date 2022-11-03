@@ -39,6 +39,11 @@ public class TestSakilaAppApplication {
     Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG");
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
 
+    Actor testActor = new Actor("TestFName", "TestSName");
+    Actor testActor2 = new Actor("TestFName2", "TestSName2");
+
+    Iterable<Actor> allActors = Arrays.asList(testActor, testActor2);
+
     @Test
     public void testGetAllFilms() {
 
@@ -61,7 +66,27 @@ public class TestSakilaAppApplication {
 
     }
 
+    @Test
+    public void testGetAllActors() {
 
+        when(mockApp.getAllActorsAPI()).thenReturn(allActors);
+
+        Iterable<Actor> actualResult = mockApp.getAllActorsAPI();
+
+        Assertions.assertEquals(allActors, actualResult);
+
+    }
+
+    @Test
+    public void testGetSpecificActor() throws Exception {
+
+        when(actorRepository.findById(5)).thenReturn(Optional.ofNullable(testActor));
+
+        Actor actualResult = mockApp.getActorAPI(5);
+
+        Assertions.assertEquals(testActor, actualResult);
+
+    }
 
 
 }
