@@ -156,13 +156,35 @@ public class TestSakilaAppApplication {
     }
 
     @Test
-    public void testGetSpecificActor() throws Exception {
+    public void testGetSpecificActorAPI() throws Exception {
 
         when(actorRepository.findById(5)).thenReturn(Optional.ofNullable(testActor));
 
         Actor actualResult = mockApp.getActorAPI(5);
 
         Assertions.assertEquals(testActor, actualResult);
+
+    }
+
+    @Test
+    public void testGetSpecificActor() throws Exception {
+
+        when(actorRepository.findAll()).thenReturn(allActors2);
+        when(actorRepository.findById(1)).thenReturn(Optional.ofNullable(testActor));
+        when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
+
+        when(ai.postMethod(anyString())).thenReturn("aaaa");
+        when(ai.fetchMethod(anyString())).thenReturn("abcd");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("specificActor");
+        modelAndView.addObject("actorList", testActor);
+        modelAndView.addObject("filmList", allFilms2);
+        modelAndView.addObject("image", "abcd");
+
+        ModelAndView actualModel = mockApp.getActor(1);
+
+        Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
 
     }
 
@@ -177,5 +199,69 @@ public class TestSakilaAppApplication {
 
     }
 
+    // FilmActors ------------------------------------------------
+
+    @Test
+    public void testGetFilmByActorID() throws Exception {
+
+        when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
+
+        List<Film> actualResult = mockApp.getFilmActorAPI(1);
+
+        Assertions.assertEquals(allFilms2, actualResult);
+
+    }
+
+    // ActorFilms ------------------------------------------------------
+
+    @Test
+    public void testGetActorsByFilmID() throws Exception {
+
+        FilmActor fa1 = new FilmActor(1, 1, testActor);
+        FilmActor fa2 = new FilmActor(2,2,testActor2);
+        List<FilmActor> faList = Arrays.asList(fa1, fa2);
+
+        when(filmActorRepository.findByFilmID(1)).thenReturn(faList);
+
+        List<FilmActor> actualResult = mockApp.getActorFilmsAPI(1);
+
+        Assertions.assertEquals(faList, actualResult);
+
+    }
+
+    // Categories ----------------------------------------
+
+    @Test
+    public void testGetCategories() throws Exception {
+
+        Category cat1 = new Category(1, "Test 1");
+        Category cat2 = new Category(2, "Test 2");
+        Iterable<Category> catList = Arrays.asList(cat1, cat2);
+        List<Category> catList2 = Arrays.asList(cat1, cat2);
+
+        when(categoryRepository.findAll()).thenReturn(catList2);
+
+        Iterable<Category> actualResult = mockApp.getAllCategoriesAPI();
+
+        Assertions.assertEquals(catList, actualResult);
+
+    }
+
+    // Films of certain Category --------------------------
+
+    @Test
+    public void testGetFilmsByCategory() throws Exception {
+
+        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
+        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
+
+        when(categoryFilmRepository.findByCategoryID(1)).thenReturn(catList);
+
+        Iterable<CategoryFilm> actualResult = mockApp.getFilmsByCategoryAPI(1);
+
+        Assertions.assertEquals(catList, actualResult);
+
+    }
 
 }

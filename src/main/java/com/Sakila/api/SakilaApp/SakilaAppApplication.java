@@ -57,13 +57,15 @@ public class SakilaAppApplication {
 
 	@GetMapping("/actors/{id}")
 	public ModelAndView getActor(@PathVariable int id) throws JSONException, InterruptedException {
+
+		Actor input = actorRepository.findById(id).orElse(input = null);
+
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("specificActor");
-		modelAndView.addObject("actorList", actorRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Actor not found")));
+		modelAndView.addObject("actorList", input);
 		modelAndView.addObject("filmList", filmRespository.findByActorID(id));
 
 //		// REST REQUEST FUNCTION
-		Actor input = actorRepository.findById(id).orElse(input = null);
 		String name = input.getActorFirstname() + " " + input.getActorLastname();
 		if(input != null) {
 			modelAndView.addObject("image", ai.fetchMethod(ai.postMethod(name)));
@@ -190,9 +192,9 @@ public class SakilaAppApplication {
 		return categoryRepository.findAll();
 	}
 
-	@GetMapping("/api/filmcategories")
-	Iterable<CategoryFilm> getAllFilmCategoriesAPI() {
-		return categoryFilmRepository.findByCategoryID(3);
+	@GetMapping("/api/filmcategories/{id}")
+	Iterable<CategoryFilm> getFilmsByCategoryAPI(@PathVariable int id) {
+		return categoryFilmRepository.findByCategoryID(id);
 	}
 
 	// --------------------------------- OTHER METHODS ----
