@@ -41,6 +41,14 @@ public class TestSakilaAppApplication {
 
     }
 
+    @Test
+    public void testMain() {
+
+        mockApp2.getAllActors();
+        verify(mockApp2).getAllActors();
+
+    }
+
 //    @Test
 //    public void testGetMappingFail() throws Exception {
 //
