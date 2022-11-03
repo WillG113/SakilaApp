@@ -34,8 +34,9 @@ public class TestSakilaAppApplication {
     CategoryRepository categoryRepository = mock(CategoryRepository.class);
     FilmActorRepository filmActorRepository = mock(FilmActorRepository.class);
     CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
-    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
-
+    AiGeneration ai = mock(AiGeneration.class);
+    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, ai);
+    SakilaAppApplication mockApp2 = mock(SakilaAppApplication.class);
     Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG");
     Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG");
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
@@ -77,13 +78,52 @@ public class TestSakilaAppApplication {
     }
 
     @Test
-    public void testGetSpecificFilm() throws Exception {
+    public void testGetSpecificFilmAPI() throws Exception {
 
         when(filmRespository.findById(5)).thenReturn(Optional.ofNullable(testFilm));
 
         Film actualResult = mockApp.getFilmAPI(5);
 
         Assertions.assertEquals(testFilm, actualResult);
+
+    }
+
+    @Test
+    public void testGetSpecificFilms() throws JSONException, InterruptedException {
+
+        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
+        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        List<CategoryFilm> catList1 = Arrays.asList(cat1);
+        List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
+
+        FilmActor fa1 = new FilmActor(1, 1, testActor);
+        FilmActor fa2 = new FilmActor(2,2,testActor2);
+        List<FilmActor> faList = Arrays.asList(fa1, fa2);
+
+        when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm)); //Film Details
+        when(categoryFilmRepository.findbyFilmID(1)).thenReturn(catList1); //Find Category by Film
+        when(categoryFilmRepository.findCategoryByFilmID(1)).thenReturn("TestCategory"); //Category Name
+        when(categoryFilmRepository.findByCategoryID(1)).thenReturn(catList); //SuggestedFilms
+        when(filmActorRepository.findByFilmID(1)).thenReturn(faList); //Actors in Film
+        when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm));
+
+        //when(mockApp.postMethod(anyString())).thenReturn("abcd");
+        //when(mockApp.fetchMethod(anyString())).thenReturn("a1b2");
+        when(ai.postMethod(anyString())).thenReturn("aaaa");
+        when(ai.fetchMethod(anyString())).thenReturn("abcd");
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("specificFilm");
+        modelAndView.addObject("film", testFilm);
+        modelAndView.addObject("suggestedFilms", catList);
+        modelAndView.addObject("category", "TestCategory");
+        modelAndView.addObject("actorList", faList);
+        modelAndView.addObject("image", "abcd");
+
+        ModelAndView actualModel = mockApp.getFilm(1);
+
+        Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
 
     }
 
