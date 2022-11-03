@@ -47,8 +47,11 @@ public class TestSakilaAppApplication {
     Iterable<Actor> allActors = Arrays.asList(testActor, testActor2);
     List<Actor> allActors2 = Arrays.asList(testActor, testActor2);
 
+
+    // Films -----------------------------------------------
+
     @Test
-    public void testGetAllFilms() {
+    public void testGetAllFilmsAPI() {
 
         when(mockApp.getAllFilmsAPI()).thenReturn(allFilms);
 
@@ -59,18 +62,17 @@ public class TestSakilaAppApplication {
     }
 
     @Test
-    public void testGetAllActors2() {
+    public void testGetAllFilms() {
 
-        when(actorRepository.findAll()).thenReturn(allActors2);
+        when(filmRespository.findAll()).thenReturn(allFilms2);
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("actors");
-        modelAndView.addObject("actorList", allActors2);
+        modelAndView.setViewName("films");
+        modelAndView.addObject("filmList", allFilms2);
 
-        ModelAndView actualModel = mockApp.getAllActors();
+        ModelAndView actualModel = mockApp.getAllFilms();
 
         Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
-
 
     }
 
@@ -85,14 +87,31 @@ public class TestSakilaAppApplication {
 
     }
 
+    // ACTORS -------------------------------------------------
     @Test
-    public void testGetAllActors() {
+    public void testGetAllActorsAPI() {
 
         when(mockApp.getAllActorsAPI()).thenReturn(allActors);
 
         Iterable<Actor> actualResult = mockApp.getAllActorsAPI();
 
         Assertions.assertEquals(allActors, actualResult);
+
+    }
+
+    @Test
+    public void testGetAllActors() {
+
+        when(actorRepository.findAll()).thenReturn(allActors2);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("actors");
+        modelAndView.addObject("actorList", allActors2);
+
+        ModelAndView actualModel = mockApp.getAllActors();
+
+        Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
+
 
     }
 
