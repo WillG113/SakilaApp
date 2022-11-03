@@ -40,7 +40,7 @@ public class TestCategoryFilm {
     @Test
     public void setTestCategoryFilmSetFilm() {
 
-        Film otherTestFilm = new Film("OtherTestFilm", "Test Description", "2010", 5, 12.99, 60, 25.99, "PG")
+        Film otherTestFilm = new Film("OtherTestFilm", "Test Description", "2010", 5, 12.99, 60, 25.99, "PG");
 
         Assertions.assertEquals(testFilm, testCategoryFilm.getFilm());
         testCategoryFilm.setFilm(otherTestFilm);
