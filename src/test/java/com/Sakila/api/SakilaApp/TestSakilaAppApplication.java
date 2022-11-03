@@ -14,6 +14,8 @@ import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.request.*;
 import org.springframework.test.web.servlet.result.*;
 import org.springframework.web.client.*;
+import org.springframework.web.context.request.*;
+
 import static org.mockito.Mockito.*;
 
 import javax.servlet.*;
@@ -34,24 +36,17 @@ public class TestSakilaAppApplication {
 
     @Test
     public void testGetMapping() throws Exception {
-//        Film test = new Film();
-//        //200 indicates success
-//       // mockMvc.perform(MockMvcRequestBuilders.get("/api/films")).andExpect(MockMvcResultMatchers.status().is(200));
-//        Film expectedFilm = new Film("AFRICAN EGG", "A Fast-Paced Documentary of a Pastry Chef And a Dentist who must Pursue a Forensic Psychologist in The Gulf of Mexico", "2006", 6, 2.99, 130, 22.99, "G");
-//        mockApp2.getFilmAPI(5);
-//        verify(mockApp2).getFilmAPI(5);
+        Film f = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG");
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        when(mockApp2.getFilmAPI(5)).thenReturn(f);
+        Film responseBody = mockApp2.getFilmAPI(5);
+
+        Assertions.assertEquals(f, responseBody);
     }
 
-    @Test
-    public void testMain() {
-        Film f = mock(Film.class);
-        when(filmRepo.findById(5)).thenReturn(Optional.of(f));
-
-        mockApp2.getFilmAPI(5);
-        verify(mockApp2).getFilmAPI(5);
-
-        //Assertions.assertThrows(IndexOutOfBoundsException.class, () -> mockApp2.getActorAPI(9999));
-    }
 
 
 }
