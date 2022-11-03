@@ -42,7 +42,7 @@ public class TestSakilaAppApplication {
     @Test
     public void testGetMapping() {
 
-        Mockito.when(mockApp.getAllFilmsAPI()).thenReturn(allFilms);
+        when(mockApp.getAllFilmsAPI()).thenReturn(allFilms);
 
         Iterable<Film> actualResult = mockApp.getAllFilmsAPI();
 
