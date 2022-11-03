@@ -127,6 +127,19 @@ public class TestSakilaAppApplication {
 
     }
 
+    @Test
+    public void testAddActor() {
+
+        Actor a1 = new Actor("Fname", "Sname");
+
+        when(actorRepository.save(any(Actor.class))).thenReturn(a1);
+
+        Actor a = mockApp.addActor("Fname", "Sname");
+
+        Assertions.assertEquals(a1, a);
+
+    }
+
     // ACTORS -------------------------------------------------
     @Test
     public void testGetAllActorsAPI() {
