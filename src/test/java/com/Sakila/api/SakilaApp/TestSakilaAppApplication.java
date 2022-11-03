@@ -256,6 +256,19 @@ public class TestSakilaAppApplication {
         Actor a1 = new Actor("newName", "newSname");
 
         when(actorRepository.save(any(Actor.class))).thenReturn(a1);
+
+        Actor a = mockApp.replaceActor(1, "newName", "newSName");
+
+        Assertions.assertEquals(a1, a);
+
+    }
+
+    @Test
+    public void testUpdateActor2() {
+
+        Actor a1 = new Actor("newName", "newSname");
+
+        when(actorRepository.save(any(Actor.class))).thenReturn(a1);
         when(actorRepository.findById(1)).thenReturn(Optional.ofNullable(testActor));
 
         Actor a = mockApp.replaceActor(1, "newName", "newSName");
