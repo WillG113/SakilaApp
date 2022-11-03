@@ -1,9 +1,7 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.JUnit;
 
-import com.Sakila.api.SakilaApp.*;
+import com.Sakila.api.SakilaApp.Resources.*;
 import org.junit.jupiter.api.*;
-
-import java.util.*;
 
 public class TestFilmActor {
 

@@ -1,4 +1,4 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.Resources;
 
 import org.springframework.data.jpa.repository.*;
 

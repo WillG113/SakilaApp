@@ -1,12 +1,10 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.Resources;
 
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.io.*;
-import java.util.*;
 
 
 @Entity

@@ -1,10 +1,11 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.CucumberTests;
 
+import com.Sakila.api.SakilaApp.*;
+import com.Sakila.api.SakilaApp.Resources.*;
 import io.cucumber.java.en.*;
 import io.cucumber.spring.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.boot.test.context.*;
 
 @ScenarioScope
 public class SpecificFilmStepDef {

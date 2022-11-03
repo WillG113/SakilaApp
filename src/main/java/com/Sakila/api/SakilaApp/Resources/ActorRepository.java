@@ -1,8 +1,6 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.Resources;
 
 import org.springframework.data.jpa.repository.*;
-
-import java.util.*;
 
 public interface ActorRepository extends JpaRepository<Actor, Integer> {
 

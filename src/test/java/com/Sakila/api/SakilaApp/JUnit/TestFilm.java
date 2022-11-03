@@ -1,6 +1,6 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.JUnit;
 
-import org.junit.*;
+import com.Sakila.api.SakilaApp.Resources.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 

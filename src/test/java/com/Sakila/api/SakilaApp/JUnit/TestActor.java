@@ -1,5 +1,6 @@
-package com.Sakila.api.SakilaApp;
+package com.Sakila.api.SakilaApp.JUnit;
 
+import com.Sakila.api.SakilaApp.Resources.*;
 import org.junit.jupiter.api.*;
 
 public class TestActor {
