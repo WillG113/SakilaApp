@@ -126,11 +126,26 @@ public class TestSakilaAppApplication {
     }
 
     // POST ----
+    @Test
+    public void testUpdateFilm() {
 
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
+
+        when(filmRespository.save(any(Film.class))).thenReturn(f1);
+
+        Film f = mockApp.replaceFilm(1,"Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG");
+
+        Assertions.assertEquals(f1, f);
+
+    }
 
 
     // DELETE ----
-
+    @Test
+    public void testDeleteFilm() {
+        mockApp.deleteFilm(1);
+        verify(filmRespository).deleteById(1);
+    }
 
     // ACTORS -------------------------------------------------
     @Test
@@ -234,6 +249,13 @@ public class TestSakilaAppApplication {
     }
 
     // DELETE -----
+    @Test
+    public void testDeleteActor() {
+
+        mockApp.deleteActor(1);
+        verify(actorRepository).deleteById(1);
+
+    }
 
     // FilmActors ------------------------------------------------
 
