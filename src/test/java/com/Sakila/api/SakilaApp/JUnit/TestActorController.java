@@ -58,7 +58,6 @@ public class TestActorController {
 
         Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
 
-
     }
 
     @Test
@@ -89,6 +88,28 @@ public class TestActorController {
         modelAndView.addObject("actorList", testActor);
         modelAndView.addObject("filmList", allFilms2);
         modelAndView.addObject("image", "abcd");
+
+        ModelAndView actualModel = mockApp.getActor(1);
+
+        Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
+
+    }
+
+    @Test
+    public void testGetSpecificActor2() throws Exception {
+
+        mockApp.ai = mock(AiGeneration.class);
+
+        when(actorRepository.findById(1)).thenReturn(Optional.empty());
+        when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
+
+        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("specificActor");
+        modelAndView.addObject("actorList", null);
+        modelAndView.addObject("filmList", allFilms2);
 
         ModelAndView actualModel = mockApp.getActor(1);
 

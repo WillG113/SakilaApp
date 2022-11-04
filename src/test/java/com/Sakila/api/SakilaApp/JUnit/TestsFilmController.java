@@ -112,6 +112,45 @@ public class TestsFilmController {
 
     }
 
+    @Test
+    public void testGetSpecificFilms2() throws JSONException, InterruptedException {
+
+        mockApp.ai = mock(AiGeneration.class);
+
+        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
+        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        List<CategoryFilm> catList1 = Arrays.asList(cat1);
+        List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
+
+        FilmActor fa1 = new FilmActor(1, 1, testActor);
+        FilmActor fa2 = new FilmActor(2,2,testActor2);
+        List<FilmActor> faList = Arrays.asList(fa1, fa2);
+
+        when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm)).thenReturn(Optional.empty()); //Film Details
+        when(categoryFilmRepository.findbyFilmID(1)).thenReturn(catList1); //Find Category by Film
+        when(categoryFilmRepository.findCategoryByFilmID(1)).thenReturn("TestCategory"); //Category Name
+        when(categoryFilmRepository.findByCategoryID(1)).thenReturn(catList); //SuggestedFilms
+        when(filmActorRepository.findByFilmID(1)).thenReturn(faList); //Actors in Film
+
+        //when(mockApp.postMethod(anyString())).thenReturn("abcd");
+        //when(mockApp.fetchMethod(anyString())).thenReturn("a1b2");
+        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("specificFilm");
+        modelAndView.addObject("film", testFilm);
+        modelAndView.addObject("suggestedFilms", catList);
+        modelAndView.addObject("category", "TestCategory");
+        modelAndView.addObject("actorList", faList);
+
+        ModelAndView actualModel = mockApp.getFilm(1);
+
+        Assertions.assertEquals(modelAndView.toString(), actualModel.toString());
+
+    }
+
     // POST ----
     @Test
     public void testAddFilm() {

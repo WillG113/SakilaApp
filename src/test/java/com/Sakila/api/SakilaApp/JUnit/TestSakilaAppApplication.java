@@ -1,5 +1,6 @@
 package com.Sakila.api.SakilaApp.JUnit;
 
+import com.Sakila.api.SakilaApp.*;
 import org.json.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
@@ -14,10 +15,10 @@ public class TestSakilaAppApplication {
 
 
 
+    @Test
+    public void testMain() {
 
-    // Films -----------------------------------------------
-
-
+    }
 
 
 }
