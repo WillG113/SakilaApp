@@ -66,6 +66,16 @@ class TestAiGeneration {
     }
 
     @Test
+    void testFetchMethod3() throws JSONException, InterruptedException {
+
+        AiGeneration ai = new AiGeneration();
+
+        String actual = ai.fetchMethod("maintenence");
+
+        Assertions.assertEquals("", actual);
+    }
+
+    @Test
     void testPostMethod() throws JSONException {
 
 
@@ -92,6 +102,37 @@ class TestAiGeneration {
         String result = ai.postMethod("a");
 
         Assertions.assertEquals("abcdefg", result);
+
+
+    }
+
+    @Test
+    void testPostMethod2() throws JSONException {
+
+
+        AiGeneration ai = new AiGeneration();
+
+        String dummyResponse = "{\"message\": \"maintenence\"}\n";
+
+        ai.setRestTemplate(mock(RestTemplate.class));
+
+        String test = "{\"prompt\": \"" + "a" + "\"}";
+        JSONObject obj = new JSONObject(test);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("apikey", "tfgQCv8pHWSRiv8PRP94VA");
+        headers.add("accept", "application/json");
+        headers.add("Content-Type", "application/json");
+        HttpEntity<String> entity = new HttpEntity<>(obj.toString(), headers);
+
+        String URL = "https://stablehorde.net/api/v2/generate/async";
+        ResponseEntity<String> dummy = new ResponseEntity<>(dummyResponse, HttpStatus.ACCEPTED);
+
+        when(ai.getRestTemplate().exchange(URL, HttpMethod.POST, entity, String.class)).thenReturn(dummy);
+
+        String result = ai.postMethod("a");
+
+        Assertions.assertEquals("maintenence", result);
 
 
     }

@@ -24,22 +24,27 @@ public class AiGeneration {
 
     public  String fetchMethod(String input) throws JSONException, InterruptedException {
 
-        JSONObject obj;
+        if(input.equals("maintenence")){
+            return "";
+        } else {
 
-        do {
-            TimeUnit.MILLISECONDS.sleep(250);
+            JSONObject obj;
 
-            ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/" + input, String.class);
+            do {
+                TimeUnit.MILLISECONDS.sleep(250);
+
+                ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/" + input, String.class);
+                obj = new JSONObject(response.getBody());
+            }
+
+            while (!obj.getString("finished").equals("1"));
+
+            ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/status/" + input, String.class);
+
             obj = new JSONObject(response.getBody());
+            JSONArray test = obj.getJSONArray("generations");
+            return test.getJSONObject(0).getString("img");
         }
-
-        while(!obj.getString("finished").equals("1"));
-
-        ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/status/" + input, String.class);
-
-        obj = new JSONObject(response.getBody());
-        JSONArray test = obj.getJSONArray("generations");
-        return test.getJSONObject(0).getString("img");
     }
 
 
@@ -59,9 +64,13 @@ public class AiGeneration {
         ResponseEntity<String> response = restTemplate.exchange(input, HttpMethod.POST, entity, String.class);
 
         JSONObject objTest = new JSONObject(response.getBody());
+        System.out.println(objTest.toString());
 
-        return objTest.getString("id");
-
+        if(objTest.has("message")){
+            return "maintenence";
+        } else {
+            return objTest.getString("id");
+        }
     }
 
 }
