@@ -6,6 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.*;
+
+
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
@@ -41,6 +44,7 @@ public class SakilaAppApplication {
 		this.categoryFilmRepository = categoryFilmRepository;
 	}
 
+	@ExcludeFromCodeCoverage
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
