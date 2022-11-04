@@ -36,7 +36,7 @@ public class SakilaAppApplication {
 		this.categoryFilmRepository = categoryFilmRepository;
 	}
 
-	public static void main(String[] args) {
+	public void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
 }
