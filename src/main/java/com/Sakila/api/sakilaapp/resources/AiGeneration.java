@@ -64,7 +64,6 @@ public class AiGeneration {
         ResponseEntity<String> response = restTemplate.exchange(input, HttpMethod.POST, entity, String.class);
 
         JSONObject objTest = new JSONObject(response.getBody());
-        System.out.println(objTest.toString());
 
         if(objTest.has("message")){
             return "maintenence";
