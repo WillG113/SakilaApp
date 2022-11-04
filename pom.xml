@@ -8,7 +8,7 @@
 		<version>2.7.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.Sakila.api</groupId>
+	<groupId>com.sakila.api</groupId>
 	<artifactId>SakilaApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SakilaApp</name>
