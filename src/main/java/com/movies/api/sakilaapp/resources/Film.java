@@ -42,8 +42,7 @@ public class Film {
     @Column(name = "score")
     int score;
 
-    //Constructor
-    @Autowired
+    //Constructor   
     public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
         this.title = title;
         this.desc = desc;
