@@ -11,7 +11,7 @@ public class TestCategoryFilm {
     CategoryFilm categoryFilm = new CategoryFilm();
 
     @Test
-    public void testCategoryFilmConstructor() {
+    void testCategoryFilmConstructor() {
 
         Assertions.assertEquals(1, testCategoryFilm.getFilmID());
         Assertions.assertEquals(1, testCategoryFilm.getCategoryID());
@@ -20,7 +20,7 @@ public class TestCategoryFilm {
     }
 
     @Test
-    public void testCategoryFilmSetFilmID() {
+    void testCategoryFilmSetFilmID() {
 
         Assertions.assertEquals(1, testCategoryFilm.getFilmID());
         testCategoryFilm.setFilmID(5);
@@ -29,7 +29,7 @@ public class TestCategoryFilm {
     }
 
     @Test
-    public void setTestCategoryFilmSetCategoryID() {
+    void setTestCategoryFilmSetCategoryID() {
 
         Assertions.assertEquals(1, testCategoryFilm.getCategoryID());
         testCategoryFilm.setCategoryID(5);
@@ -39,7 +39,7 @@ public class TestCategoryFilm {
     }
 
     @Test
-    public void setTestCategoryFilmSetFilm() {
+    void setTestCategoryFilmSetFilm() {
 
         Film otherTestFilm = new Film("OtherTestFilm", "Test Description", "2010", 5, 12.99, 60, 25.99, "PG", 0);
 

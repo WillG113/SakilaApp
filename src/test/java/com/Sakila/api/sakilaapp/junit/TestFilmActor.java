@@ -12,7 +12,7 @@ public class TestFilmActor {
     FilmActor filmActor = new FilmActor();
 
     @Test
-    public void testFilmActorConstructor() {
+    void testFilmActorConstructor() {
 
         Assertions.assertEquals(3, testFA.getFilmID());
         Assertions.assertEquals(3, testFA.getActorID());
@@ -21,7 +21,7 @@ public class TestFilmActor {
     }
 
     @Test
-    public void testSetFilmID() {
+    void testSetFilmID() {
 
         Assertions.assertEquals(3, testFA.getFilmID());
         testFA.setFilmID(5);
@@ -30,7 +30,7 @@ public class TestFilmActor {
     }
 
     @Test
-    public void testSetActorID() {
+    void testSetActorID() {
 
         Assertions.assertEquals(3, testFA.getActorID());
         testFA.setActorID(5);
@@ -39,7 +39,7 @@ public class TestFilmActor {
     }
 
     @Test
-    public void testSetActor() {
+    void testSetActor() {
 
         Actor newActor = new Actor("newFname", "newSname");
 

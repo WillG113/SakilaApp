@@ -13,13 +13,13 @@ import static org.mockito.Mockito.*;
 public class TestAiGeneration {
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         AiGeneration ai = new AiGeneration();
         Assertions.assertNotNull(ai.getRestTemplate());
     }
 
     @Test
-    public void testFetchMethod() throws JSONException, InterruptedException {
+    void testFetchMethod() throws JSONException, InterruptedException {
 
         AiGeneration ai = new AiGeneration();
 
@@ -41,7 +41,7 @@ public class TestAiGeneration {
     }
 
     @Test
-    public void testFetchMethod2() throws JSONException, InterruptedException {
+    void testFetchMethod2() throws JSONException, InterruptedException {
 
         AiGeneration ai = new AiGeneration();
 
@@ -66,7 +66,7 @@ public class TestAiGeneration {
     }
 
     @Test
-    public void testPostMethod() throws JSONException {
+    void testPostMethod() throws JSONException {
 
 
         AiGeneration ai = new AiGeneration();

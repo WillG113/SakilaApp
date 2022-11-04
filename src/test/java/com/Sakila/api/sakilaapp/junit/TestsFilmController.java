@@ -35,7 +35,7 @@ public class TestsFilmController {
     List<Actor> allActors2 = Arrays.asList(testActor, testActor2);
 
     @Test
-    public void testGetAllFilmsAPI() {
+    void testGetAllFilmsAPI() {
 
         when(filmRespository.findAll()).thenReturn(allFilms2);
 
@@ -46,7 +46,7 @@ public class TestsFilmController {
     }
 
     @Test
-    public void testGetAllFilms() {
+    void testGetAllFilms() {
 
         when(filmRespository.findAll()).thenReturn(allFilms2);
 
@@ -61,7 +61,7 @@ public class TestsFilmController {
     }
 
     @Test
-    public void testGetSpecificFilmAPI() throws Exception {
+    void testGetSpecificFilmAPI() throws Exception {
 
         when(filmRespository.findById(5)).thenReturn(Optional.ofNullable(testFilm));
 
@@ -72,7 +72,7 @@ public class TestsFilmController {
     }
 
     @Test
-    public void testGetSpecificFilms() throws JSONException, InterruptedException {
+    void testGetSpecificFilms() throws JSONException, InterruptedException {
 
         mockApp.ai = mock(AiGeneration.class);
 
@@ -113,7 +113,7 @@ public class TestsFilmController {
     }
 
     @Test
-    public void testGetSpecificFilms2() throws JSONException, InterruptedException {
+    void testGetSpecificFilms2() throws JSONException, InterruptedException {
 
         mockApp.ai = mock(AiGeneration.class);
 
@@ -153,7 +153,7 @@ public class TestsFilmController {
 
     // POST ----
     @Test
-    public void testAddFilm() {
+    void testAddFilm() {
 
         Film f1 = new Film("T", "D", "2000", 1, 1.11, 10, 1.11, "PG", 0);
 
@@ -167,7 +167,7 @@ public class TestsFilmController {
 
     // PUT ----
     @Test
-    public void testUpdateFilm() {
+    void testUpdateFilm() {
 
         Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
 
@@ -180,7 +180,7 @@ public class TestsFilmController {
     }
 
     @Test
-    public void testUpdateFilm2() {
+    void testUpdateFilm2() {
 
         Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
 
@@ -196,7 +196,7 @@ public class TestsFilmController {
 
     // DELETE ----
     @Test
-    public void testDeleteFilm() {
+    void testDeleteFilm() {
         mockApp.deleteFilm(1);
         verify(filmRespository).deleteById(1);
     }

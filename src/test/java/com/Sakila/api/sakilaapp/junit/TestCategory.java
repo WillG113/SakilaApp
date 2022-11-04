@@ -10,7 +10,7 @@ public class TestCategory {
     Category category = new Category();
 
     @Test
-    public void testCategoryConstructor() {
+    void testCategoryConstructor() {
 
         Assertions.assertEquals(1, testCategory.getCategoryID());
         Assertions.assertEquals("Test", testCategory.getCategoryName());
@@ -18,7 +18,7 @@ public class TestCategory {
     }
 
     @Test
-    public void setTestCategoryID() {
+    void setTestCategoryID() {
 
         Assertions.assertEquals(1, testCategory.getCategoryID());
         testCategory.setCategoryID(5);
@@ -27,7 +27,7 @@ public class TestCategory {
     }
 
     @Test
-    public void setTestCategoryName() {
+    void setTestCategoryName() {
 
         Assertions.assertEquals("Test", testCategory.getCategoryName());
         testCategory.setCategoryName("AnotherTest");

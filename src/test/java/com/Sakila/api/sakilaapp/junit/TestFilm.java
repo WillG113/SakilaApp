@@ -11,7 +11,7 @@ public class TestFilm {
     Film film = new Film();
 
     @Test
-    public void testFilmConstructor() {
+    void testFilmConstructor() {
 
         Assertions.assertEquals("testTitle", testFilm.getTitle());
         Assertions.assertEquals("testDesc", testFilm.getDesc());
@@ -21,7 +21,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetFilmID() {
+    void testSetFilmID() {
 
         Assertions.assertEquals(0, testFilm.getFilmID());
         testFilm.setFilmID(3);
@@ -30,7 +30,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetTitle() {
+    void testSetTitle() {
 
         Assertions.assertEquals("testTitle", testFilm.getTitle());
         testFilm.setTitle("newTitle");
@@ -39,7 +39,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetDesc() {
+    void testSetDesc() {
 
         Assertions.assertEquals("testDesc", testFilm.getDesc());
         testFilm.setDesc("newDesc");
@@ -48,7 +48,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetReleaseDate() {
+    void testSetReleaseDate() {
 
         Assertions.assertEquals("2006", testFilm.getReleaseYear());
         testFilm.setReleaseYear("2001");
@@ -57,7 +57,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetRentDuration() {
+    void testSetRentDuration() {
 
         Assertions.assertEquals(5, testFilm.getRentDuration());
         testFilm.setRentDuration(9);
@@ -66,7 +66,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetRentRate() {
+    void testSetRentRate() {
 
         Assertions.assertEquals(0.99, testFilm.getRentRate());
         testFilm.setRentRate(3.99);
@@ -75,7 +75,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetReplacementCost() {
+    void testSetReplacementCost() {
 
         Assertions.assertEquals(20.99, testFilm.getReplacementCost());
         testFilm.setReplacementCost(23.99);
@@ -84,7 +84,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetRating() {
+    void testSetRating() {
 
         Assertions.assertEquals("PG", testFilm.getRating());
         testFilm.setRating("18");
@@ -93,7 +93,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetLength() {
+    void testSetLength() {
 
         Assertions.assertEquals(25, testFilm.getLength());
         testFilm.setLength(3);
@@ -102,7 +102,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetScore() {
+    void testSetScore() {
 
         Assertions.assertEquals(0, testFilm.getScore());
         testFilm.setScore(5);

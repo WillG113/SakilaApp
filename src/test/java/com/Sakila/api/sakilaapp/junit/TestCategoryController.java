@@ -34,7 +34,7 @@ public class TestCategoryController {
     // Categories ----------------------------------------
 
     @Test
-    public void testGetCategories() throws Exception {
+    void testGetCategories() throws Exception {
 
         Category cat1 = new Category(1, "Test 1");
         Category cat2 = new Category(2, "Test 2");
@@ -52,7 +52,7 @@ public class TestCategoryController {
     // Films of certain Category --------------------------
 
     @Test
-    public void testGetFilmsByCategory() throws Exception {
+    void testGetFilmsByCategory() throws Exception {
 
         CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
         CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
