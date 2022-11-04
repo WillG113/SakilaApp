@@ -9,7 +9,7 @@ import java.util.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TestCategoryController {
+class TestCategoryController {
 
 
     ActorRepository actorRepository = mock(ActorRepository.class);

@@ -13,7 +13,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-public class TestsFilmController {
+class TestsFilmController {
 
 
     ActorRepository actorRepository = mock(ActorRepository.class);

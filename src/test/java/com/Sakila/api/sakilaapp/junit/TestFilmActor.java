@@ -3,7 +3,7 @@ package com.Sakila.api.sakilaapp.junit;
 import com.Sakila.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestFilmActor {
+class TestFilmActor {
 
     Actor testActor = new Actor("testFname", "testSname");
 

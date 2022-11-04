@@ -10,7 +10,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.*;
 import static org.mockito.Mockito.*;
 
-public class TestAiGeneration {
+class TestAiGeneration {
 
     @Test
     void testConstructor() {

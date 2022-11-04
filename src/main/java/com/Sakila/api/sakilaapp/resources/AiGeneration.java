@@ -39,8 +39,7 @@ public class AiGeneration {
 
         obj = new JSONObject(response.getBody());
         JSONArray test = obj.getJSONArray("generations");
-        String imageSource = test.getJSONObject(0).getString("img");
-        return imageSource;
+        return test.getJSONObject(0).getString("img");;
     }
 
 
@@ -59,12 +58,9 @@ public class AiGeneration {
         String input = "https://stablehorde.net/api/v2/generate/async";
         ResponseEntity<String> response = restTemplate.exchange(input, HttpMethod.POST, entity, String.class);
 
-        String responseTest = response.getBody();
-
         JSONObject objTest = new JSONObject(response.getBody());
-        String links = objTest.getString("id");
 
-        return links;
+        return objTest.getString("id");
 
     }
 

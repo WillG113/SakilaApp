@@ -4,7 +4,7 @@ import com.Sakila.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
-public class TestFilm {
+class TestFilm {
 
     Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
 

@@ -3,7 +3,7 @@ package com.Sakila.api.sakilaapp.junit;
 import com.Sakila.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestCategory {
+class TestCategory {
 
     Category testCategory = new Category(1, "Test");
 
