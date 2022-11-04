@@ -11,7 +11,7 @@ public class TestActor {
     Actor actor = new Actor();
 
     @Test
-    public void testActorConstructor() {
+    void testActorConstructor() {
 
         Assertions.assertEquals("TestFirstname", testActor.getActorFirstname(), "Should automatically set the value based on what's passed into constructor");
         Assertions.assertEquals("TestLastname", testActor.getActorLastname(), "Should automatically set the value based on what's passed into constructor");
@@ -19,7 +19,7 @@ public class TestActor {
     }
 
     @Test
-    public void testSetActorID() {
+    void testSetActorID() {
 
         Assertions.assertEquals(0, testActor.getActorID());
         testActor.setActorID(3);
@@ -28,7 +28,7 @@ public class TestActor {
     }
 
     @Test
-    public void testSetActorFirstname() {
+    void testSetActorFirstname() {
 
         Assertions.assertEquals("TestFirstname", testActor.getActorFirstname());
         testActor.setActorFirstname("newTestName");
@@ -37,7 +37,7 @@ public class TestActor {
     }
 
     @Test
-    public void testSetActorLastname() {
+    void testSetActorLastname() {
 
         Assertions.assertEquals("TestLastname", testActor.getActorLastname());
         testActor.setActorLastname("newTestName");

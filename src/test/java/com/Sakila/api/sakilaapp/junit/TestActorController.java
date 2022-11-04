@@ -35,7 +35,7 @@ public class TestActorController {
 
     // ACTORS -------------------------------------------------
     @Test
-    public void testGetAllActorsAPI() {
+    void testGetAllActorsAPI() {
 
         when(mockApp.getAllActorsAPI()).thenReturn(allActors);
 
@@ -46,7 +46,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testGetAllActors() {
+    void testGetAllActors() {
 
         when(actorRepository.findAll()).thenReturn(allActors2);
 
@@ -61,7 +61,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testGetSpecificActorAPI() throws Exception {
+    void testGetSpecificActorAPI() throws Exception {
 
         when(actorRepository.findById(5)).thenReturn(Optional.ofNullable(testActor));
 
@@ -72,7 +72,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testGetSpecificActor() throws Exception {
+    void testGetSpecificActor() throws Exception {
 
         mockApp.ai = mock(AiGeneration.class);
 
@@ -96,7 +96,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testGetSpecificActor2() throws Exception {
+    void testGetSpecificActor2() throws Exception {
 
         mockApp.ai = mock(AiGeneration.class);
 
@@ -118,7 +118,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testGetFilmsByActorID() throws Exception {
+    void testGetFilmsByActorID() throws Exception {
 
         when(actorRepository.findById(5)).thenReturn(Optional.ofNullable(testActor));
 
@@ -130,7 +130,7 @@ public class TestActorController {
 
     // POST ---------------
     @Test
-    public void testAddActor() {
+    void testAddActor() {
 
         Actor a1 = new Actor("Fname", "Sname");
 
@@ -144,7 +144,7 @@ public class TestActorController {
 
     // PUT ------
     @Test
-    public void testUpdateActor() {
+    void testUpdateActor() {
 
         Actor a1 = new Actor("newName", "newSname");
 
@@ -157,7 +157,7 @@ public class TestActorController {
     }
 
     @Test
-    public void testUpdateActor2() {
+    void testUpdateActor2() {
 
         Actor a1 = new Actor("newName", "newSname");
 
@@ -172,7 +172,7 @@ public class TestActorController {
 
     // DELETE -----
     @Test
-    public void testDeleteActor() {
+    void testDeleteActor() {
 
         mockApp.deleteActor(1);
         verify(actorRepository).deleteById(1);
@@ -182,7 +182,7 @@ public class TestActorController {
     // FilmActors ------------------------------------------------
 
     @Test
-    public void testGetFilmByActorID() throws Exception {
+    void testGetFilmByActorID() throws Exception {
 
         when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
 
@@ -195,7 +195,7 @@ public class TestActorController {
     // ActorFilms ------------------------------------------------------
 
     @Test
-    public void testGetActorsByFilmID() throws Exception {
+    void testGetActorsByFilmID() throws Exception {
 
         FilmActor fa1 = new FilmActor(1, 1, testActor);
         FilmActor fa2 = new FilmActor(2,2,testActor2);
