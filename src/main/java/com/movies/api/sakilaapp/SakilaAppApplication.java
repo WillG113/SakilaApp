@@ -44,7 +44,7 @@ public class SakilaAppApplication {
 		this.categoryFilmRepository = categoryFilmRepository;
 	}
 
-	@Generated
+	@Generated //Ignore this method from code coverage as it's infeasible to test this method.
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
