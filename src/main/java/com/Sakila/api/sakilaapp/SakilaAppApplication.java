@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
+@CrossOrigin
 public class SakilaAppApplication {
 
 
