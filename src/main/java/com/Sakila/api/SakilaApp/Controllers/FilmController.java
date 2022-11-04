@@ -50,19 +50,17 @@ public class FilmController extends SakilaAppApplication {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("specificFilm");
-        modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
+        modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(IndexOutOfBoundsException::new));
         List<CategoryFilm> category = categoryFilmRepository.findbyFilmID(id);
         String filmCategory = categoryFilmRepository.findCategoryByFilmID(id);
         modelAndView.addObject("suggestedFilms", categoryFilmRepository.findByCategoryID(category.get(0).getCategoryID()));
         modelAndView.addObject("category", filmCategory);
         modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
-        System.out.println(filmActorRepository.findByFilmID(id));
 
 //		// REST REQUEST FUNCTION
-        Film input = filmRespository.findById(id).orElse(input = null);
+        Film input = filmRespository.findById(id).orElse(null);
 
         if(input != null) {
-            //fetchMethod(postMethod(input.getDesc()));
             modelAndView.addObject("image", ai.fetchMethod(ai.postMethod(input.getDesc())));
         }
         return modelAndView;

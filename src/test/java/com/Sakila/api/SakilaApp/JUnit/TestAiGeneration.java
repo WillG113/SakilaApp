@@ -20,7 +20,7 @@ public class TestAiGeneration {
     @Test
     public void testConstructor() {
         AiGeneration ai = new AiGeneration();
-        Assertions.assertNotNull(ai.restTemplate);
+        Assertions.assertNotNull(ai.getRestTemplate());
     }
 
     @Test
@@ -35,10 +35,10 @@ public class TestAiGeneration {
         ResponseEntity<String> dummy = new ResponseEntity<String>(dummyResponse, HttpStatus.ACCEPTED);
         ResponseEntity<String> dummy2 = new ResponseEntity<String>(otherDummyResponse, HttpStatus.ACCEPTED);
 
-        ai.restTemplate = mock(RestTemplate.class);
+        ai.setRestTemplate(mock(RestTemplate.class));
 
-        when(ai.restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/a", String.class)).thenReturn(dummy);
-        when(ai.restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/status/a", String.class)).thenReturn(dummy2);
+        when(ai.getRestTemplate().getForEntity("https://stablehorde.net/api/v2/generate/check/a", String.class)).thenReturn(dummy);
+        when(ai.getRestTemplate().getForEntity("https://stablehorde.net/api/v2/generate/status/a", String.class)).thenReturn(dummy2);
 
         String actual = ai.fetchMethod("a");
 
@@ -60,10 +60,10 @@ public class TestAiGeneration {
         ResponseEntity<String> dummy2 = new ResponseEntity<String>(otherDummyResponse, HttpStatus.ACCEPTED);
         ResponseEntity<String> dummy3= new ResponseEntity<String>(dummyResponse2, HttpStatus.ACCEPTED);
 
-        ai.restTemplate = mock(RestTemplate.class);
+        ai.setRestTemplate(mock(RestTemplate.class));
 
-        when(ai.restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/a", String.class)).thenReturn(dummy).thenReturn(dummy3);
-        when(ai.restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/status/a", String.class)).thenReturn(dummy2);
+        when(ai.getRestTemplate().getForEntity("https://stablehorde.net/api/v2/generate/check/a", String.class)).thenReturn(dummy).thenReturn(dummy3);
+        when(ai.getRestTemplate().getForEntity("https://stablehorde.net/api/v2/generate/status/a", String.class)).thenReturn(dummy2);
 
         String actual = ai.fetchMethod("a");
 
@@ -78,7 +78,7 @@ public class TestAiGeneration {
 
         String dummyResponse = "{\"id\": \"abcdefg\"}\n";
 
-        ai.restTemplate = mock(RestTemplate.class);
+        ai.setRestTemplate(mock(RestTemplate.class));
 
         String test = "{\"prompt\": \"" + "a" + "\"}";
         JSONObject obj = new JSONObject(test);
@@ -92,7 +92,7 @@ public class TestAiGeneration {
         String URL = "https://stablehorde.net/api/v2/generate/async";
         ResponseEntity<String> dummy = new ResponseEntity<>(dummyResponse, HttpStatus.ACCEPTED);
 
-        when(ai.restTemplate.exchange(URL, HttpMethod.POST, entity, String.class)).thenReturn(dummy);
+        when(ai.getRestTemplate().exchange(URL, HttpMethod.POST, entity, String.class)).thenReturn(dummy);
 
         String result = ai.postMethod("a");
 

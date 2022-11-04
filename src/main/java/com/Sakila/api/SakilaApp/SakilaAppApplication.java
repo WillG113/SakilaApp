@@ -6,10 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.processing.*;
-import javax.persistence.*;
-
-
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
@@ -19,9 +15,13 @@ public class SakilaAppApplication {
 
 	@Autowired
 	private ActorRepository actorRepository;
+	@Autowired
 	private FilmRespository filmRespository;
+	@Autowired
 	private CategoryRepository categoryRepository;
+	@Autowired
 	private FilmActorRepository filmActorRepository;
+	@Autowired
 	private CategoryFilmRepository categoryFilmRepository;
 
 	public AiGeneration ai = new AiGeneration();
