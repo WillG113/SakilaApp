@@ -8,16 +8,24 @@ import java.util.concurrent.*;
 
 public class AiGeneration {
 
+    public RestTemplate restTemplate;
+
+    public AiGeneration() {
+        this.restTemplate = new RestTemplate();
+    }
+
+    public void setRestTemplate(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     public  String fetchMethod(String URL) throws JSONException, InterruptedException {
-        RestTemplate restTemplate= new RestTemplate();
+
         JSONObject obj;
 
         do {
             TimeUnit.MILLISECONDS.sleep(250);
 
             ResponseEntity<String> response = restTemplate.getForEntity("https://stablehorde.net/api/v2/generate/check/" + URL, String.class);
-            String test = response.getBody();
-
             obj = new JSONObject(response.getBody());
             System.out.println("trying - queue position: " + obj.getString("queue_position"));
         }
@@ -35,8 +43,6 @@ public class AiGeneration {
 
 
     public String postMethod(String title) throws JSONException {
-
-        RestTemplate restTemplate= new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
 
         String test = "{\"prompt\": \"" + title + "\"}";
