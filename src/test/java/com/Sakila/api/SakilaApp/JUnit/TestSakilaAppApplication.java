@@ -21,6 +21,5 @@ public class TestSakilaAppApplication {
         @Test
         public void testMain() {
                 SakilaAppApplication.main(new String[] {});
-                Assertions.assertTrue(true);
         }
 }
