@@ -36,8 +36,11 @@ public class Film {
     @Column(name = "rating")
     String rating;
 
+    @Column(name = "score")
+    int score;
+
     //Constructor
-    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating) {
+    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
         this.title = title;
         this.desc = desc;
         this.releaseYear = releaseYear;
@@ -46,6 +49,7 @@ public class Film {
         this.length = length;
         this.replacementCost = replacementCost;
         this.rating = rating;
+        this.score = score;
     }
 
     public Film() {
@@ -124,5 +128,13 @@ public class Film {
 
     public void setLength(int length) {
         this.length = length;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

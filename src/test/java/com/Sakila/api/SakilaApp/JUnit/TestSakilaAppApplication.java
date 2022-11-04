@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.*;
 
 
 public class TestSakilaAppApplication {
-        
+
         @Test
         public void test() {
 

@@ -45,6 +45,9 @@ public class FilmController extends SakilaAppApplication {
 
     @GetMapping("/films/{id}")
     public ModelAndView getFilm(@PathVariable int id) throws JSONException, InterruptedException {
+
+        filmRespository.updateScore(id);
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("specificFilm");
         modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException()));
@@ -67,13 +70,13 @@ public class FilmController extends SakilaAppApplication {
 
     @PostMapping("/films/{title}+{desc}+{length}")
     public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
         return filmRespository.save(newFilm);
     }
 
     @PutMapping("/films/{id}+{title}+{desc}+{length}")
     public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
 
         return filmRespository.findById(id).map(film -> {
             film.setTitle(newFilm.getTitle());
