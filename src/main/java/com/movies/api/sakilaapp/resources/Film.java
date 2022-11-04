@@ -1,12 +1,12 @@
 package com.movies.api.sakilaapp.resources;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="film")
-@Component
 public class Film {
 
     //Attributes
@@ -43,6 +43,7 @@ public class Film {
     int score;
 
     //Constructor
+    @Autowired
     public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
         this.title = title;
         this.desc = desc;
