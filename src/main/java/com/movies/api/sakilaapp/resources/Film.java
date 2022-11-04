@@ -1,9 +1,12 @@
 package com.movies.api.sakilaapp.resources;
 
+import org.springframework.stereotype.*;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="film")
+@Component
 public class Film {
 
     //Attributes
