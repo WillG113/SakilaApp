@@ -26,8 +26,12 @@ import static org.mockito.Mockito.*;
 public class TestSakilaAppApplication {
 
         @Test
-       public void test() {
+        public void applicationContextLoaded() {
+        }
 
-       }
+        @Test
+        public void applicationContextTest() {
+                SakilaAppApplication.main(new String[] {});
+        }
 
 }
