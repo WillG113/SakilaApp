@@ -14,10 +14,6 @@ public class AiGeneration {
         this.restTemplate = new RestTemplate();
     }
 
-    public void setRestTemplate(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
     public  String fetchMethod(String URL) throws JSONException, InterruptedException {
 
         JSONObject obj;
