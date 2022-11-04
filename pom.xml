@@ -111,7 +111,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.7.4</version>
 				<configuration>
-					<mainClass>com.Sakila.api.sakilaapp.SakilaAppApplication</mainClass>
+					<mainClass>com.movies.api.sakilaapp.SakilaAppApplication</mainClass>
 				</configuration>
 
 			</plugin>
