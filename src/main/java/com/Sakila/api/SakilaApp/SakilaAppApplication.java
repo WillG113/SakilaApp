@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Generated;
 import javax.annotation.processing.*;
 import javax.persistence.*;
 
@@ -36,7 +35,6 @@ public class SakilaAppApplication {
 		this.filmActorRepository = filmActorRepository;
 		this.categoryFilmRepository = categoryFilmRepository;
 	}
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);

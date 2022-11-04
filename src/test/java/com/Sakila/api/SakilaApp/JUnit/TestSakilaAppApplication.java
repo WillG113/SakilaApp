@@ -18,12 +18,9 @@ import java.util.*;
 
 public class TestSakilaAppApplication {
 
-
-
         @Test
-        public void contextLoads() {
+        public void testMain() {
+                SakilaAppApplication.main(new String[] {});
+                Assertions.assertTrue(true);
         }
-
-
-
 }
