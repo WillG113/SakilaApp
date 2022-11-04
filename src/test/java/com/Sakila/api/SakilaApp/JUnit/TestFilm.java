@@ -102,7 +102,7 @@ public class TestFilm {
     }
 
     @Test
-    public void testSetLength() {
+    public void testSetScore() {
 
         Assertions.assertEquals(0, testFilm.getScore());
         testFilm.setScore(5);
