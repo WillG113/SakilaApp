@@ -27,10 +27,7 @@ public class TestSakilaAppApplication {
 
         @Test
        public void test() {
-                String array[] = {};
-                SakilaAppApplication app = mock(SakilaAppApplication.class);
-                SakilaAppApplication.main(array);
-                verify(SakilaAppApplication.main(array));
+
        }
 
 }
