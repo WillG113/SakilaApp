@@ -74,7 +74,7 @@ class TestsFilmController {
     @Test
     void testGetSpecificFilms() throws JSONException, InterruptedException {
 
-        mockApp.ai = mock(AiGeneration.class);
+        mockApp.setAi(mock(AiGeneration.class));
 
         CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
         CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
@@ -94,8 +94,8 @@ class TestsFilmController {
 
         //when(mockApp.postMethod(anyString())).thenReturn("abcd");
         //when(mockApp.fetchMethod(anyString())).thenReturn("a1b2");
-        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
-        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+        when(mockApp.getAi().postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.getAi().fetchMethod(anyString())).thenReturn("abcd");
 
 
         ModelAndView modelAndView = new ModelAndView();
@@ -115,7 +115,7 @@ class TestsFilmController {
     @Test
     void testGetSpecificFilms2() throws JSONException, InterruptedException {
 
-        mockApp.ai = mock(AiGeneration.class);
+        mockApp.setAi(mock(AiGeneration.class));
 
         CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
         CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
@@ -134,8 +134,8 @@ class TestsFilmController {
 
         //when(mockApp.postMethod(anyString())).thenReturn("abcd");
         //when(mockApp.fetchMethod(anyString())).thenReturn("a1b2");
-        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
-        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+        when(mockApp.getAi().postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.getAi().fetchMethod(anyString())).thenReturn("abcd");
 
 
         ModelAndView modelAndView = new ModelAndView();

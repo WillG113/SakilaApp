@@ -50,7 +50,7 @@ public class ActorController extends SakilaAppApplication {
 //		// REST REQUEST FUNCTION
         if(input != null) {
             String name = input.getActorFirstname() + " " + input.getActorLastname();
-            modelAndView.addObject("image", ai.fetchMethod(ai.postMethod(name)));
+            modelAndView.addObject("image", getAi().fetchMethod(getAi().postMethod(name)));
         }
 
         return modelAndView;

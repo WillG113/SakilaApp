@@ -62,7 +62,7 @@ public class FilmController extends SakilaAppApplication {
         Film input = filmRespository.findById(id).orElse(null);
 
         if(input != null) {
-            modelAndView.addObject("image", ai.fetchMethod(ai.postMethod(input.getDesc())));
+            modelAndView.addObject("image", getAi().fetchMethod(getAi().postMethod(input.getDesc())));
         }
         return modelAndView;
     }

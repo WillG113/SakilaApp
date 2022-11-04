@@ -74,14 +74,14 @@ class TestActorController {
     @Test
     void testGetSpecificActor() throws Exception {
 
-        mockApp.ai = mock(AiGeneration.class);
+        mockApp.setAi(mock(AiGeneration.class));
 
         when(actorRepository.findAll()).thenReturn(allActors2);
         when(actorRepository.findById(1)).thenReturn(Optional.ofNullable(testActor));
         when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
 
-        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
-        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+        when(mockApp.getAi().postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.getAi().fetchMethod(anyString())).thenReturn("abcd");
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("specificActor");
@@ -98,13 +98,13 @@ class TestActorController {
     @Test
     void testGetSpecificActor2() throws Exception {
 
-        mockApp.ai = mock(AiGeneration.class);
+        mockApp.setAi(mock(AiGeneration.class));
 
         when(actorRepository.findById(1)).thenReturn(Optional.empty());
         when(filmRespository.findByActorID(1)).thenReturn(allFilms2);
 
-        when(mockApp.ai.postMethod(anyString())).thenReturn("aaaa");
-        when(mockApp.ai.fetchMethod(anyString())).thenReturn("abcd");
+        when(mockApp.getAi().postMethod(anyString())).thenReturn("aaaa");
+        when(mockApp.getAi().fetchMethod(anyString())).thenReturn("abcd");
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("specificActor");

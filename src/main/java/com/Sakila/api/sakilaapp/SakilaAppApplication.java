@@ -24,9 +24,15 @@ public class SakilaAppApplication {
 	@Autowired
 	private CategoryFilmRepository categoryFilmRepository;
 
-	public AiGeneration ai = new AiGeneration();
+	private AiGeneration ai = new AiGeneration();
 
+	public AiGeneration getAi() {
+		return ai;
+	}
 
+	public void setAi(AiGeneration ai) {
+		this.ai = ai;
+	}
 
 	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository){
 		this.actorRepository = actorRepository;
