@@ -1,7 +1,6 @@
 package com.movies.api.sakilaapp.resources;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.stereotype.*;
 
 import javax.persistence.*;
 
@@ -42,7 +41,8 @@ public class Film {
     @Column(name = "score")
     int score;
 
-    //Constructor   
+    //Constructor
+    @Autowired
     public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
         this.title = title;
         this.desc = desc;
