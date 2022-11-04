@@ -40,7 +40,7 @@ public class ActorController extends SakilaAppApplication {
     @GetMapping("/actors/{id}")
     public ModelAndView getActor(@PathVariable int id) throws JSONException, InterruptedException {
 
-        Actor input = actorRepository.findById(id).orElse(input = null);
+        Actor input = actorRepository.findById(id).orElse(null);
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("specificActor");
@@ -58,7 +58,7 @@ public class ActorController extends SakilaAppApplication {
 
     @GetMapping("/api/actors/{id}")
     public Actor getActorAPI(@PathVariable int id) {
-        return actorRepository.findById(id).orElseThrow(() -> new IndexOutOfBoundsException());
+        return actorRepository.findById(id).orElseThrow(IndexOutOfBoundsException::new);
     }
 
     //Finds films based on a certain actor
