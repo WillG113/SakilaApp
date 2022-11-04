@@ -65,7 +65,7 @@ public class AiGeneration {
 
         JSONObject objTest = new JSONObject(response.getBody());
 
-        if(objTest.has("message")){
+        if(objTest.toString().matches("..message..")){
             return "maintenence";
         } else {
             return objTest.getString("id");
