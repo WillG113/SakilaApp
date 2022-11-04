@@ -39,7 +39,7 @@ public class AiGeneration {
 
         obj = new JSONObject(response.getBody());
         JSONArray test = obj.getJSONArray("generations");
-        return test.getJSONObject(0).getString("img");;
+        return test.getJSONObject(0).getString("img");
     }
 
 
