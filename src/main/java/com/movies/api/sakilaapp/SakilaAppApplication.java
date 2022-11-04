@@ -44,7 +44,7 @@ public class SakilaAppApplication {
 		this.categoryFilmRepository = categoryFilmRepository;
 	}
 
-	@ExcludeFromCodeCoverage
+	@Generated
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaAppApplication.class, args);
 	}
