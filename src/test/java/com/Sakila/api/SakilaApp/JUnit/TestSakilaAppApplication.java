@@ -16,7 +16,6 @@ import static org.mockito.Mockito.*;
 import javax.servlet.*;
 import java.util.*;
 
-@SpringBootTest(classes = SakilaAppApplication.class)
 public class TestSakilaAppApplication {
 
 
