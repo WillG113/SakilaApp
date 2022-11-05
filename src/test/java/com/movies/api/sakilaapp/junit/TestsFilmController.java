@@ -16,14 +16,10 @@ import static org.mockito.Mockito.*;
 class TestsFilmController {
 
 
-    ActorRepository actorRepository = mock(ActorRepository.class);
     FilmRespository filmRespository = mock(FilmRespository.class);
-    CategoryRepository categoryRepository = mock(CategoryRepository.class);
     FilmActorRepository filmActorRepository = mock(FilmActorRepository.class);
     CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
-    StockRepository stockRepository = mock(StockRepository.class);
-    //SakilaAppApplication mockApp = new SakilaAppApplication(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
-    FilmController mockApp = new FilmController(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    FilmController mockApp = new FilmController(filmRespository, filmActorRepository, categoryFilmRepository);
     Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
     Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);

@@ -17,8 +17,8 @@ public class ActorController extends SakilaAppApplication {
     private final FilmRespository filmRespository;
     private final FilmActorRepository filmActorRepository;
 
-    public ActorController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository) {
-        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    public ActorController(ActorRepository actorRepository, FilmRespository filmRespository, FilmActorRepository filmActorRepository) {
+        super();
         this.actorRepository = actorRepository;
         this.filmRespository = filmRespository;
         this.filmActorRepository = filmActorRepository;

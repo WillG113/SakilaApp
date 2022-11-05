@@ -9,13 +9,8 @@ import static org.mockito.Mockito.when;
 
 class TestStockController {
 
-    ActorRepository actorRepository = mock(ActorRepository.class);
-    FilmRespository filmRespository = mock(FilmRespository.class);
-    CategoryRepository categoryRepository = mock(CategoryRepository.class);
-    FilmActorRepository filmActorRepository = mock(FilmActorRepository.class);
-    CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
     StockRepository stockRepository = mock(StockRepository.class);
-    StockController mockApp = new StockController(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    StockController mockApp = new StockController(stockRepository);
 
     @Test
     void testLowerScore() {

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 
 class TestSakilaAppApplication {
 
-    SakilaAppApplication app = new SakilaAppApplication(null, null, null, null, null, null);
+    SakilaAppApplication app = new SakilaAppApplication();
 
     @Test
     void testSetAI() {

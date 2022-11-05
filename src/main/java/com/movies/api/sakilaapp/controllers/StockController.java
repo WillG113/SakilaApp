@@ -11,8 +11,8 @@ public class StockController extends SakilaAppApplication {
     @Autowired
     private final StockRepository stockRepository;
 
-    public StockController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository) {
-        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    public StockController(StockRepository stockRepository) {
+        super();
         this.stockRepository = stockRepository;
     }
 

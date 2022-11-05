@@ -25,7 +25,7 @@ public class SpecificActorsStepDef {
     @Autowired
     private StockRepository stockRepo;
 
-    SakilaAppApplication mockApp = new SakilaAppApplication(actorRepo, filmRepo, categoryRepo, filmActorRepo, categoryFilmRepo, stockRepo);
+    SakilaAppApplication mockApp = new SakilaAppApplication();
 
 
     @Given("A user wants to find information about an actor by their ID")

@@ -23,8 +23,8 @@ public class FilmController extends SakilaAppApplication {
     @Autowired
     private final CategoryFilmRepository categoryFilmRepository;
 
-    public FilmController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository) {
-        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    public FilmController(FilmRespository filmRespository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository) {
+        super();
         this.filmRespository = filmRespository;
         this.filmActorRepository = filmActorRepository;
         this.categoryFilmRepository = categoryFilmRepository;
