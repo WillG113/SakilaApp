@@ -3,7 +3,7 @@ package com.movies.api.sakilaapp.junit;
 import com.movies.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestStock {
+class TestStock {
 
     Stock testStock = new Stock(1, 1);
 

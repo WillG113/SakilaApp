@@ -11,11 +11,11 @@ public class Stock {
     int filmID;
 
     @Column(name = "stock")
-    int stock;
+    int film_stock;
 
-    public Stock(int filmID, int stock) {
+    public Stock(int filmID, int film_stock) {
         this.filmID = filmID;
-        this.stock = stock;
+        this.film_stock = film_stock;
     }
 
     public Stock() {
@@ -31,10 +31,10 @@ public class Stock {
     }
 
     public int getStock() {
-        return stock;
+        return film_stock;
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+        this.film_stock = stock;
     }
 }
