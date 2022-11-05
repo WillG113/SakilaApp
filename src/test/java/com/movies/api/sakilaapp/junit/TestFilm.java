@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class TestFilm {
 
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
 
     Film film = new Film();
 
@@ -107,6 +107,17 @@ class TestFilm {
         Assertions.assertEquals(0, testFilm.getScore());
         testFilm.setScore(5);
         Assertions.assertEquals(5, testFilm.getScore());
+
+    }
+
+    @Test
+    void testSetStock() {
+
+        Stock newStock = new Stock(1,1);
+
+        Assertions.assertEquals(0, testFilm.getStock().getStock());
+        testFilm.setStock(newStock);
+        Assertions.assertEquals(newStock, testFilm.getStock());
 
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 class TestCategoryFilm {
 
-    Film testFilm = new Film("TestFilm", "Test Description", "2000", 3, 2.99, 30, 20.99, "PG", 0, 0);
+    Film testFilm = new Film("TestFilm", "Test Description", "2000", 3, 2.99, 30, 20.99, "PG", 0);
     CategoryFilm testCategoryFilm = new CategoryFilm(1, 1, testFilm);
 
     CategoryFilm categoryFilm = new CategoryFilm();
@@ -41,7 +41,7 @@ class TestCategoryFilm {
     @Test
     void setTestCategoryFilmSetFilm() {
 
-        Film otherTestFilm = new Film("OtherTestFilm", "Test Description", "2010", 5, 12.99, 60, 25.99, "PG", 0, 0);
+        Film otherTestFilm = new Film("OtherTestFilm", "Test Description", "2010", 5, 12.99, 60, 25.99, "PG", 0);
 
         Assertions.assertEquals(testFilm, testCategoryFilm.getFilm());
         testCategoryFilm.setFilm(otherTestFilm);

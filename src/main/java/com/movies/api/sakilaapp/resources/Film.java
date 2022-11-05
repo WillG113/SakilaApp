@@ -44,7 +44,6 @@ public class Film {
     @Column(name = "score")
     int score;
 
-    int temp;
 
     @OneToOne()
     @JoinColumn(name = "film_id", insertable = false, updatable = false)
@@ -53,7 +52,7 @@ public class Film {
 
     //Constructor
     @Autowired
-    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score, int temp) {
+    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
         this.title = title;
         this.desc = desc;
         this.releaseYear = releaseYear;
@@ -63,8 +62,7 @@ public class Film {
         this.replacementCost = replacementCost;
         this.rating = rating;
         this.score = score;
-        this.temp = temp;
-        this.stock = new Stock(1, 12);
+        this.stock = new Stock(0, 0);
     }
 
     public Film() {

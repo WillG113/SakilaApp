@@ -22,8 +22,8 @@ class TestActorController {
     StockRepository stockRepository = mock(StockRepository.class);
     //SakilaAppApplication mockApp = new SakilaAppApplication(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
     ActorController mockApp = new ActorController(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
-    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
     List<Film> allFilms2 = Arrays.asList(testFilm, testFilm2);
 

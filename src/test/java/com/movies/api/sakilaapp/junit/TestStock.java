@@ -26,6 +26,7 @@ public class TestStock {
 
     }
 
+    @Test
     void testSetStock() {
 
         Assertions.assertEquals(1, testStock.getStock());
