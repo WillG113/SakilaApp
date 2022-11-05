@@ -1,6 +1,5 @@
 package com.movies.api.sakilaapp.controllers;
 
-import com.movies.api.sakilaapp.*;
 import com.movies.api.sakilaapp.resources.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
