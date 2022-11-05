@@ -5,6 +5,7 @@ package com.movies.api.sakilaapp.controllers;
 import com.movies.api.sakilaapp.*;
 import com.movies.api.sakilaapp.resources.*;
 import org.json.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
@@ -15,13 +16,15 @@ import java.util.*;
 @EnableAutoConfiguration
 public class FilmController extends SakilaAppApplication {
 
+    @Autowired
     private final FilmRespository filmRespository;
-
+    @Autowired
     private final FilmActorRepository filmActorRepository;
+    @Autowired
     private final CategoryFilmRepository categoryFilmRepository;
 
-    public FilmController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository) {
-        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
+    public FilmController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository) {
+        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
         this.filmRespository = filmRespository;
         this.filmActorRepository = filmActorRepository;
         this.categoryFilmRepository = categoryFilmRepository;
@@ -70,13 +73,13 @@ public class FilmController extends SakilaAppApplication {
 
     @PostMapping("/films/{title}+{desc}+{length}")
     public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0, 0);
         return filmRespository.save(newFilm);
     }
 
     @PutMapping("/films/{id}+{title}+{desc}+{length}")
     public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0, 0);
 
         return filmRespository.findById(id).map(film -> {
             film.setTitle(newFilm.getTitle());

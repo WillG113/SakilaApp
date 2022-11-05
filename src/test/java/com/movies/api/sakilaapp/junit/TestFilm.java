@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class TestFilm {
 
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
 
     Film film = new Film();
 

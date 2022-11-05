@@ -25,6 +25,8 @@ public class SakilaAppApplication {
 	private FilmActorRepository filmActorRepository;
 	@Autowired
 	private CategoryFilmRepository categoryFilmRepository;
+	@Autowired
+	private StockRepository stockRepository;
 
 	private AiGeneration ai = new AiGeneration();
 
@@ -36,12 +38,13 @@ public class SakilaAppApplication {
 		this.ai = ai;
 	}
 
-	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository){
+	public SakilaAppApplication(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository){
 		this.actorRepository = actorRepository;
 		this.filmRespository = filmRespository;
 		this.categoryRepository = categoryRepository;
 		this.filmActorRepository = filmActorRepository;
 		this.categoryFilmRepository = categoryFilmRepository;
+		this.stockRepository = stockRepository;
 	}
 
 	@Generated //Ignore this method from code coverage as it's infeasible to test this method.

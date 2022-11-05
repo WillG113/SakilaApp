@@ -21,10 +21,11 @@ class TestsFilmController {
     CategoryRepository categoryRepository = mock(CategoryRepository.class);
     FilmActorRepository filmActorRepository = mock(FilmActorRepository.class);
     CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
+    StockRepository stockRepository = mock(StockRepository.class);
     //SakilaAppApplication mockApp = new SakilaAppApplication(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
-    FilmController mockApp = new FilmController(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
-    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    FilmController mockApp = new FilmController(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
+    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, 0);
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
     List<Film> allFilms2 = Arrays.asList(testFilm, testFilm2);
 
@@ -155,7 +156,7 @@ class TestsFilmController {
     @Test
     void testAddFilm() {
 
-        Film f1 = new Film("T", "D", "2000", 1, 1.11, 10, 1.11, "PG", 0);
+        Film f1 = new Film("T", "D", "2000", 1, 1.11, 10, 1.11, "PG", 0, 0);
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
 
@@ -169,7 +170,7 @@ class TestsFilmController {
     @Test
     void testUpdateFilm() {
 
-        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0, 0);
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
 
@@ -182,7 +183,7 @@ class TestsFilmController {
     @Test
     void testUpdateFilm2() {
 
-        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0, 0);
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
         when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm));

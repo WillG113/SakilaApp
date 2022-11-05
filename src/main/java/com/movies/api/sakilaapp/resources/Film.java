@@ -1,8 +1,11 @@
 package com.movies.api.sakilaapp.resources;
 
+import org.hibernate.annotations.*;
 import org.springframework.beans.factory.annotation.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="film")
@@ -41,9 +44,16 @@ public class Film {
     @Column(name = "score")
     int score;
 
+    int temp;
+
+    @OneToOne()
+    @JoinColumn(name = "film_id", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    Stock stock;
+
     //Constructor
     @Autowired
-    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
+    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score, int temp) {
         this.title = title;
         this.desc = desc;
         this.releaseYear = releaseYear;
@@ -53,6 +63,8 @@ public class Film {
         this.replacementCost = replacementCost;
         this.rating = rating;
         this.score = score;
+        this.temp = temp;
+        this.stock = new Stock(1, 12);
     }
 
     public Film() {
@@ -139,5 +151,13 @@ public class Film {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }

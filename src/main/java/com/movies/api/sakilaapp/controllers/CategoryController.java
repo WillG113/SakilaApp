@@ -12,8 +12,8 @@ public class CategoryController extends SakilaAppApplication {
     private final CategoryRepository categoryRepository;
     private final CategoryFilmRepository categoryFilmRepository;
 
-    public CategoryController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository) {
-        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository);
+    public CategoryController(ActorRepository actorRepository, FilmRespository filmRespository, CategoryRepository categoryRepository, FilmActorRepository filmActorRepository, CategoryFilmRepository categoryFilmRepository, StockRepository stockRepository) {
+        super(actorRepository, filmRespository, categoryRepository, filmActorRepository, categoryFilmRepository, stockRepository);
         this.categoryRepository = categoryRepository;
         this.categoryFilmRepository = categoryFilmRepository;
     }
