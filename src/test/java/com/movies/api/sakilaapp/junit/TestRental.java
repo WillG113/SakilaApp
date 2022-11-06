@@ -3,7 +3,7 @@ package com.movies.api.sakilaapp.junit;
 import com.movies.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestRental {
+class TestRental {
 
     Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
     Rental testRental = new Rental(1, "Test Date", 1, 1, "Test Date 2", testFilm);
@@ -11,7 +11,7 @@ public class TestRental {
     Rental rental = new Rental();
 
     @Test
-    public void testRentalConstructor() {
+    void testRentalConstructor() {
 
         Assertions.assertEquals(1, testRental.getRentalID());
         Assertions.assertEquals("Test Date", testRental.getRentalDate());
@@ -23,7 +23,7 @@ public class TestRental {
     }
 
     @Test
-    public void testSetRentalID() {
+    void testSetRentalID() {
 
         Assertions.assertEquals(1, testRental.getRentalID());
         testRental.setRentalID(5);
@@ -32,7 +32,7 @@ public class TestRental {
     }
 
     @Test
-    public void testSetRentalDate() {
+    void testSetRentalDate() {
 
         Assertions.assertEquals("Test Date", testRental.getRentalDate());
         testRental.setRentalDate("Date Two");
@@ -41,7 +41,7 @@ public class TestRental {
     }
 
     @Test
-    public void testSetCustomerID() {
+    void testSetCustomerID() {
 
         Assertions.assertEquals(1, testRental.getCustomerID());
         testRental.setCustomerID(5);
@@ -50,7 +50,7 @@ public class TestRental {
     }
 
     @Test
-    public void testSetFilmID() {
+    void testSetFilmID() {
 
         Assertions.assertEquals(1, testRental.getFilmID());
         testRental.setFilmID(5);
@@ -59,7 +59,7 @@ public class TestRental {
     }
 
     @Test
-    public void testSetReturnDate() {
+    void testSetReturnDate() {
 
         Assertions.assertEquals("Test Date 2", testRental.getReturnDate());
         testRental.setReturnDate("Date Two 2");
@@ -68,11 +68,13 @@ public class TestRental {
     }
 
     @Test
-    public void testSetFilm() {
+    void testSetFilm() {
 
-        Assertions.assertEquals(1, testRental.getRentalID());
-        testRental.setRentalID(5);
-        Assertions.assertEquals(5, testRental.getRentalID());
+        Film testFilm2 = new Film("testTitle 123", "testDesc 123", "20012", 1, 0.99, 25, 20.99, "PG", 0);
+
+        Assertions.assertEquals(testFilm, testRental.getFilm());
+        testRental.setFilm(testFilm2);
+        Assertions.assertEquals(testFilm2, testRental.getFilm());
 
     }
 

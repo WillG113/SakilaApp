@@ -3,7 +3,7 @@ package com.movies.api.sakilaapp.junit;
 import com.movies.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestAddress {
+class TestAddress {
 
     Country testCountry = new Country(1, "TestCountry");
     City testCity = new City(1, "TestCity", 1, testCountry);
@@ -12,7 +12,7 @@ public class TestAddress {
     Address address = new Address();
 
     @Test
-    public void testAddressConstructor() {
+    void testAddressConstructor() {
 
         Assertions.assertEquals(1, testAddress.getAddressID());
         Assertions.assertEquals("Test Address", testAddress.getAddressLine());
@@ -25,7 +25,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetAddressID() {
+    void testSetAddressID() {
 
         Assertions.assertEquals(1, testAddress.getAddressID());
         testAddress.setAddressID(5);
@@ -34,7 +34,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetAddressLine() {
+    void testSetAddressLine() {
 
         Assertions.assertEquals("Test Address", testAddress.getAddressLine());
         testAddress.setAddressLine("Test Two");
@@ -43,7 +43,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetDistrict() {
+    void testSetDistrict() {
 
         Assertions.assertEquals("Test District", testAddress.getDistrictName());
         testAddress.setDistrictName("Test Two");
@@ -52,7 +52,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetCityID() {
+    void testSetCityID() {
 
         Assertions.assertEquals(1, testAddress.getCityID());
         testAddress.setCityID(5);
@@ -61,7 +61,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetPostcode() {
+    void testSetPostcode() {
 
         Assertions.assertEquals("Test Postcode", testAddress.getPostcode());
         testAddress.setPostcode("Test Two");
@@ -70,7 +70,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetPhone() {
+    void testSetPhone() {
 
         Assertions.assertEquals("12345", testAddress.getPhoneNo());
         testAddress.setPhoneNo("11111");
@@ -79,7 +79,7 @@ public class TestAddress {
     }
 
     @Test
-    public void testSetCity() {
+    void testSetCity() {
 
         City testCity2 = new City(2, "TestCity Two", 2, testCountry);
 

@@ -3,7 +3,7 @@ package com.movies.api.sakilaapp.junit;
 import com.movies.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestCity {
+class TestCity {
 
     Country testCountry = new Country(1, "TestCountry");
     City testCity = new City(1, "TestCity", 1, testCountry);
@@ -11,7 +11,7 @@ public class TestCity {
     City city = new City();
 
     @Test
-    public void testCityConstructor() {
+    void testCityConstructor() {
 
         Assertions.assertEquals(1, testCity.getCityID());
         Assertions.assertEquals("TestCity", testCity.getCityName());
@@ -21,7 +21,7 @@ public class TestCity {
     }
 
     @Test
-    public void testSetCityID() {
+    void testSetCityID() {
 
         Assertions.assertEquals(1, testCity.getCityID());
         testCity.setCityID(5);
@@ -30,7 +30,7 @@ public class TestCity {
     }
 
     @Test
-    public void testSetCityName() {
+    void testSetCityName() {
 
         Assertions.assertEquals("TestCity", testCity.getCityName());
         testCity.setCityName("Test Two");
@@ -39,7 +39,7 @@ public class TestCity {
     }
 
     @Test
-    public void testSetCountryID() {
+    void testSetCountryID() {
 
         Assertions.assertEquals(1, testCity.getCountryID());
         testCity.setCountryID(5);
@@ -48,7 +48,7 @@ public class TestCity {
     }
 
     @Test
-    public void testSetCountry() {
+    void testSetCountry() {
 
         Country testCountry2 = new Country(2, "Test Country Two");
 

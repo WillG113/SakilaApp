@@ -3,7 +3,7 @@ package com.movies.api.sakilaapp.junit;
 import com.movies.api.sakilaapp.resources.*;
 import org.junit.jupiter.api.*;
 
-public class TestCustomer {
+class TestCustomer {
 
     Country testCountry = new Country(1, "TestCountry");
     City testCity = new City(1, "TestCity", 1, testCountry);
@@ -13,7 +13,7 @@ public class TestCustomer {
     Customer customer = new Customer();
 
     @Test
-    public void testCustomerConstructor() {
+    void testCustomerConstructor() {
 
         Assertions.assertEquals(1, testCustomer.getCustomerID());
         Assertions.assertEquals("FName", testCustomer.getFname());
@@ -26,7 +26,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerID() {
+    void testSetCustomerID() {
 
         Assertions.assertEquals(1, testCustomer.getCustomerID());
         testCustomer.setCustomerID(5);
@@ -35,7 +35,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerFName() {
+    void testSetCustomerFName() {
 
         Assertions.assertEquals("FName", testCustomer.getFname());
         testCustomer.setFname("FName Two");
@@ -44,7 +44,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerSName() {
+    void testSetCustomerSName() {
 
         Assertions.assertEquals("SName", testCustomer.getLname());
         testCustomer.setLname("SName Two");
@@ -53,7 +53,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerEmail() {
+    void testSetCustomerEmail() {
 
         Assertions.assertEquals("Test Email", testCustomer.getEmail());
         testCustomer.setEmail("Test Email 2");
@@ -62,7 +62,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerAddressID() {
+    void testSetCustomerAddressID() {
 
         Assertions.assertEquals(1, testCustomer.getAddressID());
         testCustomer.setAddressID(5);
@@ -71,7 +71,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerUserActive() {
+    void testSetCustomerUserActive() {
 
         Assertions.assertEquals(1, testCustomer.getUserActive());
         testCustomer.setUserActive(0);
@@ -80,7 +80,7 @@ public class TestCustomer {
     }
 
     @Test
-    public void testSetCustomerAddress() {
+    void testSetCustomerAddress() {
 
         Address testAddress2 = new Address(2, "Test Address 2", "Test District 2", 2, "Test Postcode 2", "11111", testCity);
 
