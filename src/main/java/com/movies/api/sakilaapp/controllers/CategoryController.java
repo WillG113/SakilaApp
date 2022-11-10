@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
+@CrossOrigin
 public class CategoryController {
     private final CategoryRepository categoryRepository;
     private final CategoryFilmRepository categoryFilmRepository;
@@ -24,5 +25,4 @@ public class CategoryController {
     public Iterable<CategoryFilm> getFilmsByCategoryAPI(@PathVariable int id) {
         return categoryFilmRepository.findByCategoryID(id);
     }
-
 }

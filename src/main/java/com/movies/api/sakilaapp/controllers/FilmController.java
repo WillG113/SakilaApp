@@ -71,6 +71,11 @@ public class FilmController extends SakilaAppApplication {
         return modelAndView;
     }
 
+    @GetMapping("/api/rfilms/{id}")
+    public List<Film> getRFilmAPI(@PathVariable int id) {
+        return filmRespository.findFive(id);
+    }
+
     @PostMapping("/films/{title}+{desc}+{length}")
     public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
         Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);

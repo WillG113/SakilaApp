@@ -50,6 +50,11 @@ public class Film {
     @Fetch(FetchMode.JOIN)
     Stock stock;
 
+    @OneToOne()
+    @JoinColumn(name = "film_id", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    Category category;
+
     //Constructor
     @Autowired
     public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
@@ -63,6 +68,7 @@ public class Film {
         this.rating = rating;
         this.score = score;
         this.stock = new Stock(0, 0);
+        this.category = new Category(0, "Test");
     }
 
     public Film() {
@@ -157,5 +163,13 @@ public class Film {
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
