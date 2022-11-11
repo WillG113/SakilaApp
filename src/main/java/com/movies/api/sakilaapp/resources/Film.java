@@ -164,12 +164,4 @@ public class Film {
     public void setStock(Stock stock) {
         this.stock = stock;
     }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 }

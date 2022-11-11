@@ -13,7 +13,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-class TestsFilmController {
+class TestFilmController {
 
 
     FilmRespository filmRespository = mock(FilmRespository.class);
@@ -65,6 +65,17 @@ class TestsFilmController {
         Film actualResult = mockApp.getFilmAPI(5);
 
         Assertions.assertEquals(testFilm, actualResult);
+
+    }
+
+    @Test
+    void testGetFiveFilmAPI() throws Exception {
+
+        when(filmRespository.findFive(5)).thenReturn(allFilms2);
+
+        List<Film> actualResult = mockApp.getRFilmAPI(5);
+
+        Assertions.assertEquals(allFilms2, actualResult);
 
     }
 
