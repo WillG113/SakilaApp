@@ -35,6 +35,11 @@ public class FilmController extends SakilaAppApplication {
         return filmRespository.findAll();
     }
 
+    @GetMapping("/api/filmsLimit/{start}+{end}")
+    public Iterable<Film> getAllFilmsLimitAPI(@PathVariable int start, @PathVariable int end) {
+        return filmRespository.findAllLimit(start, end);
+    }
+
     @GetMapping("/films")
     public ModelAndView getAllFilms() {
         ModelAndView modelAndView = new ModelAndView();

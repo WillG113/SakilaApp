@@ -18,4 +18,7 @@ public interface FilmRespository extends JpaRepository<Film, Integer> {
     @Query(value = "SELECT DISTINCT * FROM film WHERE film_id != ?1 ORDER BY rand() LIMIT 5", nativeQuery = true)
     List<Film> findFive(int id);
 
+    @Query(value = "SELECT * FROM film LIMIT ?1, ?2", nativeQuery = true)
+    Iterable<Film> findAllLimit(int start, int end);
+
 }

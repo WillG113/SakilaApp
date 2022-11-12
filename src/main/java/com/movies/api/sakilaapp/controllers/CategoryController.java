@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
-@CrossOrigin("localhost")
+@CrossOrigin()
 public class CategoryController {
     private final CategoryRepository categoryRepository;
     private final CategoryFilmRepository categoryFilmRepository;
