@@ -84,8 +84,8 @@ class TestFilmController {
 
         mockApp.setAi(mock(AiGeneration.class));
 
-        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
-        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        CategoryFilm cat1 = new CategoryFilm(1,1);
+        CategoryFilm cat2 = new CategoryFilm(2,2);
         List<CategoryFilm> catList1 = Arrays.asList(cat1);
         List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
 
@@ -125,8 +125,8 @@ class TestFilmController {
 
         mockApp.setAi(mock(AiGeneration.class));
 
-        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
-        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        CategoryFilm cat1 = new CategoryFilm(1,1);
+        CategoryFilm cat2 = new CategoryFilm(2,2);
         List<CategoryFilm> catList1 = Arrays.asList(cat1);
         List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
 

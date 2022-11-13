@@ -1,5 +1,6 @@
 package com.movies.api.sakilaapp.resources;
 
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -17,15 +18,22 @@ public class CategoryFilm {
     @Column(name = "category_id")
     int categoryID;
 
-    @ManyToOne()
+    @OneToOne()
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
+    @Fetch(FetchMode.JOIN)
+    Category categoryName;
+
+    @JsonIgnore()
+    @OneToOne()
     @JoinColumn(name = "film_id", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
     Film film;
 
-    public CategoryFilm(int filmID, int categoryID, Film film){
+    public CategoryFilm(int filmID, int categoryID){
         this.filmID = filmID;
         this.categoryID = categoryID;
-        this.film = film;
+        this.categoryName = new Category(1, "Test");
+        this.film = new Film();
     }
 
     public CategoryFilm() {
@@ -47,6 +55,15 @@ public class CategoryFilm {
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
     }
+
+    public Category getCategory() {
+        return categoryName;
+    }
+
+    public void setCategory(Category category) {
+        this.categoryName = category;
+    }
+
 
     public Film getFilm() {
         return film;

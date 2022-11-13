@@ -49,8 +49,8 @@ class TestCategoryController {
     @Test
     void testGetFilmsByCategory() throws Exception {
 
-        CategoryFilm cat1 = new CategoryFilm(1,1,testFilm);
-        CategoryFilm cat2 = new CategoryFilm(2,2,testFilm2);
+        CategoryFilm cat1 = new CategoryFilm(1,1);
+        CategoryFilm cat2 = new CategoryFilm(2,2);
         List<CategoryFilm> catList = Arrays.asList(cat1, cat2);
 
         when(categoryFilmRepository.findByCategoryID(1)).thenReturn(catList);

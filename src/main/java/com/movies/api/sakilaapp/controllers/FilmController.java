@@ -14,6 +14,7 @@ import java.util.*;
 
 @RestController
 @EnableAutoConfiguration
+@CrossOrigin()
 public class FilmController extends SakilaAppApplication {
 
     @Autowired
@@ -40,6 +41,11 @@ public class FilmController extends SakilaAppApplication {
         return filmRespository.findAllLimit(start, end);
     }
 
+    @GetMapping("/api/searchFilms/{query}")
+    public Iterable<Film> getFilmAPI(@PathVariable String query) {
+        return filmRespository.findByQuery(query);
+    }
+
     @GetMapping("/films")
     public ModelAndView getAllFilms() {
         ModelAndView modelAndView = new ModelAndView();
@@ -51,6 +57,11 @@ public class FilmController extends SakilaAppApplication {
     @GetMapping("/api/films/{id}")
     public Film getFilmAPI(@PathVariable int id) {
         return filmRespository.findById(id).orElseThrow(IndexOutOfBoundsException::new);
+    }
+
+    @GetMapping("/api/filmByCategory/{id}")
+    public List<Film> getFilmsByCategoryIDAPI(@PathVariable int id) {
+        return filmRespository.findByCategoryID(id);
     }
 
     @GetMapping("/films/{id}")

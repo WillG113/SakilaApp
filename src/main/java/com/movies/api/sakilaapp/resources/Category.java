@@ -1,6 +1,10 @@
 package com.movies.api.sakilaapp.resources;
 
+import org.hibernate.annotations.*;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "category")
@@ -12,6 +16,7 @@ public class Category {
 
     @Column(name = "name")
     String categoryName;
+
 
     public Category(int categoryID, String categoryName) {
         this.categoryID = categoryID;

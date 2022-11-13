@@ -53,7 +53,7 @@ public class Film {
     @OneToOne()
     @JoinColumn(name = "film_id", insertable = false, updatable = false)
     @Fetch(FetchMode.JOIN)
-    Category category;
+    CategoryFilm category;
 
     //Constructor
     @Autowired
@@ -68,7 +68,7 @@ public class Film {
         this.rating = rating;
         this.score = score;
         this.stock = new Stock(0, 0);
-        this.category = new Category(0, "Test");
+        this.category = new CategoryFilm(0, 1);
     }
 
     public Film() {
@@ -163,5 +163,13 @@ public class Film {
 
     public void setStock(Stock stock) {
         this.stock = stock;
+    }
+
+    public CategoryFilm getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryFilm category) {
+        this.category = category;
     }
 }
