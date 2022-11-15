@@ -6,7 +6,7 @@ import org.junit.jupiter.api.*;
 class TestRental {
 
     Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
-    Rental testRental = new Rental(1, "Test Date", 1, 1, "Test Date 2", testFilm);
+    Rental testRental = new Rental(1, 1);
 
     Rental rental = new Rental();
 

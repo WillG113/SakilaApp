@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin()
 public class StockController extends SakilaAppApplication {
 
     @Autowired
@@ -26,5 +27,10 @@ public class StockController extends SakilaAppApplication {
     public String increaseStockByID(@PathVariable int id) {
         stockRepository.increaseStock(id);
         return "stock updated";
+    }
+
+    @GetMapping("/api/checkStock/{id}")
+    public Stock checkStockAPI(@PathVariable int id){
+        return stockRepository.checkStock(id);
     }
 }

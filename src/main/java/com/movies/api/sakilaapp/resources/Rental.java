@@ -11,6 +11,7 @@ import javax.persistence.Table;
 public class Rental {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rental_id")
     int rentalID;
 
@@ -31,13 +32,9 @@ public class Rental {
     @Fetch(FetchMode.JOIN)
     Film film;
 
-    public Rental(int rentalID, String rentalDate, int customerID, int filmID, String returnDate, Film film) {
-        this.rentalID = rentalID;
-        this.rentalDate = rentalDate;
+    public Rental(int customerID, int filmID) {
         this.customerID = customerID;
         this.filmID = filmID;
-        this.returnDate = returnDate;
-        this.film = film;
     }
 
     public Rental() {

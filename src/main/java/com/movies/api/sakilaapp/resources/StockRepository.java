@@ -16,4 +16,7 @@ public interface StockRepository extends JpaRepository<Stock, Integer> {
     @Query(value = "UPDATE film_stock SET stock = stock + 1 WHERE film_id = ?1", nativeQuery = true)
     void increaseStock(int filmID);
 
+    @Query(value = "SELECT * FROM film_stock WHERE film_id = ?1", nativeQuery = true)
+    Stock checkStock(int id);
+
 }
