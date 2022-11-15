@@ -5,26 +5,25 @@ import org.junit.jupiter.api.*;
 
 class TestRental {
 
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
-    Rental testRental = new Rental(1, 1);
+    Rental testRental = new Rental(1, 5);
 
     Rental rental = new Rental();
 
     @Test
     void testRentalConstructor() {
 
-        Assertions.assertEquals(1, testRental.getRentalID());
+        Assertions.assertEquals(5, testRental.getFilmID());
         Assertions.assertEquals(1, testRental.getCustomerID());
 
 
     }
 
     @Test
-    void testSetRentalID() {
+    void testSetFilmID() {
 
-        Assertions.assertEquals(1, testRental.getRentalID());
-        testRental.setRentalID(5);
-        Assertions.assertEquals(5, testRental.getRentalID());
+        Assertions.assertEquals(5, testRental.getFilmID());
+        testRental.setFilmID(12);
+        Assertions.assertEquals(12, testRental.getFilmID());
 
     }
 
