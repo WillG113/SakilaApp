@@ -3,6 +3,7 @@ package com.movies.api.sakilaapp.resources;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     int addressID;
 
@@ -29,19 +31,18 @@ public class Address {
     @Column(name = "phone")
     String phoneNo;
 
-    @OneToOne()
-    @JoinColumn(name = "city_id", insertable = false, updatable = false)
-    @Fetch(FetchMode.JOIN)
-    City city;
+//    @OneToOne(cascade= CascadeType.ALL)
+//    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+//    @Fetch(FetchMode.JOIN)
+//    City city;
 
-    public Address(int addressID, String addressLine, String districtName, int cityID, String postcode, String phoneNo, City city) {
-        this.addressID = addressID;
+    public Address(String addressLine, String districtName, int cityID, String postcode, String phoneNo) {
         this.addressLine = addressLine;
         this.districtName = districtName;
         this.cityID = cityID;
         this.postcode = postcode;
         this.phoneNo = phoneNo;
-        this.city = city;
+//        this.city = new City();
     }
 
     public Address() {
@@ -96,11 +97,11 @@ public class Address {
         this.phoneNo = phoneNo;
     }
 
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
+//    public City getCity() {
+//        return city;
+//    }
+//
+//    public void setCity(City city) {
+//        this.city = city;
+//    }
 }

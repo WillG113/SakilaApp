@@ -3,6 +3,7 @@ package com.movies.api.sakilaapp.resources;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     int customerID;
 
@@ -29,13 +31,12 @@ public class Customer {
     @Column(name = "active")
     int userActive;
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "address_id", updatable = false, insertable = false)
     @Fetch(FetchMode.SELECT)
     Address address;
 
-    public Customer(int customerID, String fname, String lname, String email, int addressID, int userActive, Address address) {
-        this.customerID = customerID;
+    public Customer(String fname, String lname, String email, int addressID, int userActive, Address address) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;

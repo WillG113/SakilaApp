@@ -7,15 +7,14 @@ class TestCustomer {
 
     Country testCountry = new Country(1, "TestCountry");
     City testCity = new City(1, "TestCity", 1, testCountry);
-    Address testAddress = new Address(1, "Test Address", "Test District", 1, "Test Postcode", "12345", testCity);
-    Customer testCustomer = new Customer(1, "FName", "SName", "Test Email", 1, 1, testAddress);
+    Address testAddress = new Address("Test Address", "Test District", 1, "Test Postcode", "12345");
+    Customer testCustomer = new Customer("FName", "SName", "Test Email", 1, 1, testAddress);
 
     Customer customer = new Customer();
 
     @Test
     void testCustomerConstructor() {
 
-        Assertions.assertEquals(1, testCustomer.getCustomerID());
         Assertions.assertEquals("FName", testCustomer.getFname());
         Assertions.assertEquals("SName", testCustomer.getLname());
         Assertions.assertEquals("Test Email", testCustomer.getEmail());
@@ -25,14 +24,14 @@ class TestCustomer {
 
     }
 
-    @Test
-    void testSetCustomerID() {
-
-        Assertions.assertEquals(1, testCustomer.getCustomerID());
-        testCustomer.setCustomerID(5);
-        Assertions.assertEquals(5, testCustomer.getCustomerID());
-
-    }
+//    @Test
+//    void testSetCustomerID() {
+//
+//        Assertions.assertEquals(1, testCustomer.getCustomerID());
+//        testCustomer.setCustomerID(5);
+//        Assertions.assertEquals(5, testCustomer.getCustomerID());
+//
+//    }
 
     @Test
     void testSetCustomerFName() {
@@ -82,7 +81,7 @@ class TestCustomer {
     @Test
     void testSetCustomerAddress() {
 
-        Address testAddress2 = new Address(2, "Test Address 2", "Test District 2", 2, "Test Postcode 2", "11111", testCity);
+        Address testAddress2 = new Address("Test Address 2", "Test District 2", 2, "Test Postcode 2", "11111");
 
         Assertions.assertEquals(testAddress, testCustomer.getAddress());
         testCustomer.setAddress(testAddress2);
