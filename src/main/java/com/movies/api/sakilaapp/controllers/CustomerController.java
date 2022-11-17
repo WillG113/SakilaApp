@@ -22,13 +22,16 @@ public class CustomerController {
 
     private final AddressRepository addressRepository;
 
-    public CustomerController(CustomerRepository customerRepository, RentalRepository rentalRepository, CountryRepository countryRepository, AddressRepository addressRepository, CityRepository cityRepository) {
+    private final StockRepository stockRepository;
+
+    public CustomerController(CustomerRepository customerRepository, RentalRepository rentalRepository, CountryRepository countryRepository, AddressRepository addressRepository, CityRepository cityRepository, StockRepository stockRepository) {
         super();
         this.customerRepository = customerRepository;
         this.rentalRepository = rentalRepository;
         this.countryRepository = countryRepository;
         this.cityRepository = cityRepository;
         this.addressRepository = addressRepository;
+        this.stockRepository = stockRepository;
     }
 
     @GetMapping("/api/rentals")
@@ -49,6 +52,7 @@ public class CustomerController {
 
     @PostMapping("/api/rentals/{filmID}+{customerID}")
     public Rental postRentalAPI(@PathVariable int filmID, @PathVariable int customerID) {
+        stockRepository.lowerStock(filmID);
         Rental newRental = new Rental(customerID, filmID);
         return rentalRepository.save(newRental);
     }
