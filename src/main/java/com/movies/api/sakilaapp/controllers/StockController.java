@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = {"http://localhost:3000/", "http://192.168.1.250:3000/"})
 public class StockController extends SakilaAppApplication {
 
     @Autowired

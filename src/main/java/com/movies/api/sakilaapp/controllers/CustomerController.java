@@ -10,7 +10,7 @@ import java.util.*;
 
 @RestController
 @EnableAutoConfiguration
-@CrossOrigin()
+@CrossOrigin(origins = {"http://localhost:3000/", "http://192.168.1.250:3000/"})
 public class CustomerController {
 
     private final CustomerRepository customerRepository;
@@ -52,7 +52,6 @@ public class CustomerController {
 
     @PostMapping("/api/rentals/{filmID}+{customerID}")
     public Rental postRentalAPI(@PathVariable int filmID, @PathVariable int customerID) {
-        stockRepository.lowerStock(filmID);
         Rental newRental = new Rental(customerID, filmID);
         return rentalRepository.save(newRental);
     }

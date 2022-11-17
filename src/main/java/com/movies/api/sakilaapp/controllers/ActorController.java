@@ -11,6 +11,7 @@ import java.util.*;
 
 @RestController
 @EnableAutoConfiguration
+@CrossOrigin(origins = {"http://localhost:3000/", "http://192.168.1.250:3000/"})
 public class ActorController extends SakilaAppApplication {
 
     private final ActorRepository actorRepository;
