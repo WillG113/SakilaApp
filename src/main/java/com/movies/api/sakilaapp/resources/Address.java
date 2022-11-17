@@ -31,18 +31,12 @@ public class Address {
     @Column(name = "phone")
     String phoneNo;
 
-//    @OneToOne(cascade= CascadeType.ALL)
-//    @JoinColumn(name = "city_id", insertable = false, updatable = false)
-//    @Fetch(FetchMode.JOIN)
-//    City city;
-
     public Address(String addressLine, String districtName, int cityID, String postcode, String phoneNo) {
         this.addressLine = addressLine;
         this.districtName = districtName;
         this.cityID = cityID;
         this.postcode = postcode;
         this.phoneNo = phoneNo;
-//        this.city = new City();
     }
 
     public Address() {
@@ -97,11 +91,4 @@ public class Address {
         this.phoneNo = phoneNo;
     }
 
-//    public City getCity() {
-//        return city;
-//    }
-//
-//    public void setCity(City city) {
-//        this.city = city;
-//    }
 }

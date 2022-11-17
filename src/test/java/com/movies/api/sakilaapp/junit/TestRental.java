@@ -19,6 +19,22 @@ class TestRental {
     }
 
     @Test
+    void testSetRentalID() {
+
+        testRental.setRentalID(12);
+        Assertions.assertEquals(12, testRental.getRentalID());
+
+    }
+
+    @Test
+    void testSetRentalDate() {
+
+        testRental.setRentalDate("111");
+        Assertions.assertEquals("111", testRental.getRentalDate());
+
+    }
+
+    @Test
     void testSetFilmID() {
 
         Assertions.assertEquals(5, testRental.getFilmID());
@@ -33,6 +49,24 @@ class TestRental {
         Assertions.assertEquals(1, testRental.getCustomerID());
         testRental.setCustomerID(5);
         Assertions.assertEquals(5, testRental.getCustomerID());
+
+    }
+
+    @Test
+    void testSetReturnDate() {
+
+        testRental.setReturnDate("111");
+        Assertions.assertEquals("111", testRental.getReturnDate());
+
+    }
+
+    @Test
+    void testSetFilm() {
+
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0, new Stock(), new CategoryFilm());
+
+        testRental.setFilm(f1);
+        Assertions.assertEquals(f1, testRental.getFilm());
 
     }
 

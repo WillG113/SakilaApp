@@ -20,8 +20,8 @@ class TestFilmController {
     FilmActorRepository filmActorRepository = mock(FilmActorRepository.class);
     CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
     FilmController mockApp = new FilmController(filmRespository, filmActorRepository, categoryFilmRepository);
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
-    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, new Stock(), new CategoryFilm());
+    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, new Stock(), new CategoryFilm());
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
     List<Film> allFilms2 = Arrays.asList(testFilm, testFilm2);
 
@@ -163,7 +163,7 @@ class TestFilmController {
     @Test
     void testAddFilm() {
 
-        Film f1 = new Film("T", "D", "2000", 1, 1.11, 10, 1.11, "PG", 0);
+        Film f1 = new Film("T", "D", "2000", 1, 1.11, 10, 1.11, "PG", 0, new Stock(), new CategoryFilm());
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
 
@@ -177,7 +177,7 @@ class TestFilmController {
     @Test
     void testUpdateFilm() {
 
-        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0, new Stock(), new CategoryFilm());
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
 
@@ -190,7 +190,7 @@ class TestFilmController {
     @Test
     void testUpdateFilm2() {
 
-        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0);
+        Film f1 = new Film("Title", "Desc", "2000", 1, 1.99, 10, 1.99, "PG", 0, new Stock(), new CategoryFilm());
 
         when(filmRespository.save(any(Film.class))).thenReturn(f1);
         when(filmRespository.findById(1)).thenReturn(Optional.ofNullable(testFilm));
@@ -208,6 +208,41 @@ class TestFilmController {
         mockApp.deleteFilm(1);
         verify(filmRespository).deleteById(1);
     }
+
+    @Test
+    void testGetAllFilmsLimitAPI() throws Exception {
+
+        when(filmRespository.findAllLimit(0, 10)).thenReturn(allFilms2);
+
+        Iterable<Film> actualResult = mockApp.getAllFilmsLimitAPI(0, 10);
+
+        Assertions.assertEquals(allFilms2, actualResult);
+
+    }
+
+    @Test
+    void testGetFilmAPI() throws Exception {
+
+        when(filmRespository.findByQuery("Test", 0, 10)).thenReturn(allFilms2);
+
+        Iterable<Film> actualResult = mockApp.getFilmAPI("Test", 0, 10);
+
+        Assertions.assertEquals(allFilms2, actualResult);
+
+    }
+
+    @Test
+    void testGetFilmByCategoryIDAPI() throws Exception {
+
+        when(filmRespository.findByCategoryID(1)).thenReturn(allFilms2);
+
+        Iterable<Film> actualResult = mockApp.getFilmsByCategoryIDAPI(1);
+
+        Assertions.assertEquals(allFilms2, actualResult);
+
+    }
+
+
 
 
 

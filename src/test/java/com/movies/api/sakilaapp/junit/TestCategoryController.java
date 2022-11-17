@@ -14,8 +14,8 @@ class TestCategoryController {
     CategoryRepository categoryRepository = mock(CategoryRepository.class);
     CategoryFilmRepository categoryFilmRepository = mock(CategoryFilmRepository.class);
     CategoryController mockApp = new CategoryController(categoryRepository, categoryFilmRepository);
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
-    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, new Stock(), new CategoryFilm());
+    Film testFilm2 = new Film("testTitle2", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, new Stock(), new CategoryFilm());
     Iterable<Film> allFilms = Arrays.asList(testFilm, testFilm2);
     List<Film> allFilms2 = Arrays.asList(testFilm, testFilm2);
 

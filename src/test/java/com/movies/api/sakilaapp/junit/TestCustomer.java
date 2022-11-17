@@ -24,14 +24,13 @@ class TestCustomer {
 
     }
 
-//    @Test
-//    void testSetCustomerID() {
-//
-//        Assertions.assertEquals(1, testCustomer.getCustomerID());
-//        testCustomer.setCustomerID(5);
-//        Assertions.assertEquals(5, testCustomer.getCustomerID());
-//
-//    }
+    @Test
+    void testSetCustomerID() {
+
+        testCustomer.setCustomerID(5);
+        Assertions.assertEquals(5, testCustomer.getCustomerID());
+
+    }
 
     @Test
     void testSetCustomerFName() {

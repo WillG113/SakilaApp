@@ -57,7 +57,7 @@ public class Film {
 
     //Constructor
     @Autowired
-    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score) {
+    public Film(String title, String desc, String releaseYear, int rentDuration, double rentRate, int length, double replacementCost, String rating, int score, Stock stock, CategoryFilm category) {
         this.title = title;
         this.desc = desc;
         this.releaseYear = releaseYear;
@@ -67,8 +67,8 @@ public class Film {
         this.replacementCost = replacementCost;
         this.rating = rating;
         this.score = score;
-        this.stock = new Stock(0, 0);
-        this.category = new CategoryFilm(0, 1);
+        this.stock = stock;
+        this.category = category;
     }
 
     public Film() {

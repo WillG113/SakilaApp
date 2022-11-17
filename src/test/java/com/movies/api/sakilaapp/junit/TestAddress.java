@@ -14,7 +14,6 @@ class TestAddress {
     @Test
     void testAddressConstructor() {
 
-        //Assertions.assertEquals(1, testAddress.getAddressID());
         Assertions.assertEquals("Test Address", testAddress.getAddressLine());
         Assertions.assertEquals("Test District", testAddress.getDistrictName());
         Assertions.assertEquals(1, testAddress.getCityID());
@@ -23,14 +22,13 @@ class TestAddress {
 
     }
 
-//    @Test
-//    void testSetAddressID() {
-//
-//        Assertions.assertEquals(1, testAddress.getAddressID());
-//        testAddress.setAddressID(5);
-//        Assertions.assertEquals(5, testAddress.getAddressID());
-//
-//    }
+    @Test
+    void testSetAddressID() {
+
+        testAddress.setAddressID(5);
+        Assertions.assertEquals(5, testAddress.getAddressID());
+
+    }
 
     @Test
     void testSetAddressLine() {

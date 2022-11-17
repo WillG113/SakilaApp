@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 class TestFilm {
 
-    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0);
+    Stock testStock = new Stock(1, 1);
+    CategoryFilm testCategory = new CategoryFilm(1, 1);
+    Film testFilm = new Film("testTitle", "testDesc", "2006", 5, 0.99, 25, 20.99, "PG", 0, testStock, testCategory);
 
     Film film = new Film();
 
@@ -17,6 +19,7 @@ class TestFilm {
         Assertions.assertEquals("testDesc", testFilm.getDesc());
         Assertions.assertEquals(25, testFilm.getLength());
         Assertions.assertEquals(0, testFilm.getScore());
+        Assertions.assertEquals(testStock, testFilm.getStock());
 
     }
 
@@ -118,6 +121,17 @@ class TestFilm {
         Assertions.assertEquals(0, testFilm.getStock().getStock());
         testFilm.setStock(newStock);
         Assertions.assertEquals(newStock, testFilm.getStock());
+
+    }
+
+    @Test
+    void testSetCategory() {
+
+        CategoryFilm newCategory = new CategoryFilm(5,5);
+
+        Assertions.assertEquals(testCategory, testFilm.getCategory());
+        testFilm.setCategory(newCategory);
+        Assertions.assertEquals(newCategory, testFilm.getCategory());
 
     }
 

@@ -95,13 +95,13 @@ public class FilmController extends SakilaAppApplication {
 
     @PostMapping("/films/{title}+{desc}+{length}")
     public Film addFilm(@PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0, new Stock(1,1), new CategoryFilm(1, 1));
         return filmRespository.save(newFilm);
     }
 
     @PutMapping("/films/{id}+{title}+{desc}+{length}")
     public Film replaceFilm(@PathVariable int id, @PathVariable String title, @PathVariable String desc, @PathVariable String releaseYear, @PathVariable int rentDuration, @PathVariable double rentRate, @PathVariable int length, @PathVariable double replacementCost, @PathVariable String rating){
-        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0);
+        Film newFilm = new Film(title, desc, releaseYear, rentDuration, rentRate, length, replacementCost, rating, 0,  new Stock(1,1), new CategoryFilm(1, 1));
 
         return filmRespository.findById(id).map(film -> {
             film.setTitle(newFilm.getTitle());
