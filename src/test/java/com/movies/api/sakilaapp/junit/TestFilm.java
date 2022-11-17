@@ -118,7 +118,7 @@ class TestFilm {
 
         Stock newStock = new Stock(1,1);
 
-        Assertions.assertEquals(0, testFilm.getStock().getStock());
+        Assertions.assertEquals(1, testFilm.getStock().getStock());
         testFilm.setStock(newStock);
         Assertions.assertEquals(newStock, testFilm.getStock());
 
