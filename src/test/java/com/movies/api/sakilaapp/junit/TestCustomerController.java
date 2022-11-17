@@ -2,17 +2,15 @@ package com.movies.api.sakilaapp.junit;
 
 import com.movies.api.sakilaapp.controllers.*;
 import com.movies.api.sakilaapp.resources.*;
-import io.cucumber.messages.types.*;
 import org.junit.jupiter.api.*;
 
-import java.lang.reflect.*;
 import java.util.*;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.any;
 
-public class TestCustomerController {
+class TestCustomerController {
 
     private final CustomerRepository customerRepository = mock(CustomerRepository.class);
     private final RentalRepository rentalRepository = mock(RentalRepository.class);
@@ -22,10 +20,9 @@ public class TestCustomerController {
     private final CityRepository cityRepository = mock(CityRepository.class);
 
     private final AddressRepository addressRepository = mock(AddressRepository.class);
+    
 
-    private final StockRepository stockRepository = mock(StockRepository.class);
-
-    CustomerController mockApp = new CustomerController(customerRepository, rentalRepository, countryRepository, addressRepository,cityRepository, stockRepository);
+    CustomerController mockApp = new CustomerController(customerRepository, rentalRepository, countryRepository, addressRepository,cityRepository);
 
 
     Rental testRental = new Rental(1, 1);

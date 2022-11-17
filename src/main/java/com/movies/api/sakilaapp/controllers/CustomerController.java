@@ -4,8 +4,7 @@ import com.movies.api.sakilaapp.resources.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.*;
-import java.time.format.*;
+
 import java.util.*;
 
 @RestController
@@ -22,16 +21,13 @@ public class CustomerController {
 
     private final AddressRepository addressRepository;
 
-    private final StockRepository stockRepository;
-
-    public CustomerController(CustomerRepository customerRepository, RentalRepository rentalRepository, CountryRepository countryRepository, AddressRepository addressRepository, CityRepository cityRepository, StockRepository stockRepository) {
+    public CustomerController(CustomerRepository customerRepository, RentalRepository rentalRepository, CountryRepository countryRepository, AddressRepository addressRepository, CityRepository cityRepository) {
         super();
         this.customerRepository = customerRepository;
         this.rentalRepository = rentalRepository;
         this.countryRepository = countryRepository;
         this.cityRepository = cityRepository;
         this.addressRepository = addressRepository;
-        this.stockRepository = stockRepository;
     }
 
     @GetMapping("/api/rentals")
@@ -78,10 +74,10 @@ public class CustomerController {
     @PostMapping("/api/newCustomer/{fname}+{sname}+{email}+{address}+{district}+{city_id}+{postal_code}+{phone}")
     public Customer postCustomer(@PathVariable String fname, @PathVariable String sname, @PathVariable String email,
                                  @PathVariable String address, @PathVariable String district,
-                                 @PathVariable int city_id, @PathVariable String postal_code,
+                                 @PathVariable int cityID, @PathVariable String postalCode,
                                  @PathVariable String phone) {
 
-        Address newAddress = new Address(address, district, city_id, postal_code, phone);
+        Address newAddress = new Address(address, district, cityID, postalCode, phone);
         Address returnVal = addressRepository.save(newAddress);
         Customer newCustomer = new Customer(fname, sname, email, returnVal.getAddressID(), 1, returnVal);
         return customerRepository.save(newCustomer);

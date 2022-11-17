@@ -1,6 +1,5 @@
 package com.movies.api.sakilaapp.resources;
 
-import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
