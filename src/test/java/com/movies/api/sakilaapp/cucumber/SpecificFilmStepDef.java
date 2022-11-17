@@ -2,33 +2,24 @@ package com.movies.api.sakilaapp.cucumber;
 
 
 import com.movies.api.sakilaapp.*;
+import com.movies.api.sakilaapp.controllers.*;
 import com.movies.api.sakilaapp.resources.*;
 import io.cucumber.java.en.*;
 import io.cucumber.spring.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
+
 @ScenarioScope
 public class SpecificFilmStepDef {
-
 
     Film filmObj;
 
     @Autowired
     private FilmRespository filmRepo;
-    @Autowired
-    private ActorRepository actorRepo;
-    @Autowired
-    private CategoryRepository categoryRepo;
-    @Autowired
-    private FilmActorRepository filmActorRepo;
-    @Autowired
-    private CategoryFilmRepository categoryFilmRepo;
-    @Autowired
-    private StockRepository stockRepo;
-
-    SakilaAppApplication mockApp = new SakilaAppApplication();
-
 
     @Given("A user wants to find information about a film by it's ID")
     public void a_user_wants_to_find_information_about_a_film_by_it_s_id() {

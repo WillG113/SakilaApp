@@ -21,8 +21,8 @@ public interface FilmRespository extends JpaRepository<Film, Integer> {
     @Query(value = "SELECT * FROM film LIMIT ?1, ?2", nativeQuery = true)
     Iterable<Film> findAllLimit(int start, int end);
 
-    @Query(value = "SELECT * FROM film WHERE title LIKE %?1% OR description LIKE %?1%", nativeQuery = true)
-    Iterable<Film> findByQuery(String query);
+    @Query(value = "SELECT * FROM film WHERE title LIKE %?1% OR description LIKE %?1% LIMIT ?2, ?3", nativeQuery = true)
+    Iterable<Film> findByQuery(String query, int start, int end);
 
     @Query(value = "SELECT DISTINCT * FROM film f " +
             "RIGHT JOIN film_category c " +

@@ -42,9 +42,9 @@ public class FilmController extends SakilaAppApplication {
         return filmRespository.findAllLimit(start, end);
     }
 
-    @GetMapping("/api/searchFilms/{query}")
-    public Iterable<Film> getFilmAPI(@PathVariable String query) {
-        return filmRespository.findByQuery(query);
+    @GetMapping("/api/searchFilms/{query}+{start}+{end}")
+    public Iterable<Film> getFilmAPI(@PathVariable String query, @PathVariable int start, @PathVariable int end) {
+        return filmRespository.findByQuery(query, start, end);
     }
 
     @GetMapping("/films")

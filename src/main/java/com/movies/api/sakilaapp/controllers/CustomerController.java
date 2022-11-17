@@ -77,6 +77,7 @@ public class CustomerController {
                                  @PathVariable String address, @PathVariable String district,
                                  @PathVariable int city_id, @PathVariable String postal_code,
                                  @PathVariable String phone) {
+
         Address newAddress = new Address(address, district, city_id, postal_code, phone);
         Address returnVal = addressRepository.save(newAddress);
         Customer newCustomer = new Customer(fname, sname, email, returnVal.getAddressID(), 1, returnVal);

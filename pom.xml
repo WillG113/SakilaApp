@@ -118,7 +118,16 @@
       <artifactId>mockito-core</artifactId>  
       <version>4.6.1</version>  
       <scope>test</scope> 
-    </dependency> 
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.2.1</version>
+      <scope>test</scope>
+    </dependency>
+
+
   </dependencies>  
   <build> 
     <plugins> 
