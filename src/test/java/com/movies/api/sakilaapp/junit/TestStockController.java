@@ -28,4 +28,14 @@ class TestStockController {
 
     }
 
+    @Test
+    void testCheckStockAPI() {
+
+        Stock stockReturn = new Stock(1, 50);
+        when(stockRepository.checkStock(1)).thenReturn(stockReturn);
+        Stock actualReturn = mockApp.checkStockAPI(1);
+        Assertions.assertEquals(stockReturn, actualReturn);
+
+    }
+
 }

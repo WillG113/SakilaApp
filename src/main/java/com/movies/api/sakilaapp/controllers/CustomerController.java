@@ -70,7 +70,7 @@ public class CustomerController {
     }
 
     @GetMapping("/api/customerIDbyEmail/{email}")
-    public Customer getAllRentalsByIDAPI(@PathVariable String email) {
+    public Customer getAllRentalsByEmailAPI(@PathVariable String email) {
         return customerRepository.findByEmail(email);
     }
 
