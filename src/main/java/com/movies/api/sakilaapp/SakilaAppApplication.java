@@ -11,7 +11,8 @@ import java.lang.annotation.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("/")
-@CrossOrigin()
+@CrossOrigin(origins = {"http://localhost:3000/"})
+
 public class SakilaAppApplication {
 
 	private AiGeneration ai = new AiGeneration();
