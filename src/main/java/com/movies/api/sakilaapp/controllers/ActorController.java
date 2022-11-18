@@ -74,13 +74,13 @@ public class ActorController extends SakilaAppApplication {
         return filmActorRepository.findByFilmID(id);
     }
 
-    @PostMapping("/actors/{fname}+{sname}")
+    @PostMapping("/api/addActor/{fname}+{sname}")
     public Actor addActor(@PathVariable String fname, @PathVariable String sname){
         Actor newActor = new Actor(fname, sname);
         return actorRepository.save(newActor);
     }
 
-    @PutMapping("/actors/{id}+{fname}+{sname}")
+    @PutMapping("/api/updateActor/{id}+{fname}+{sname}")
     public Actor replaceActor(@PathVariable int id, @PathVariable String fname, @PathVariable String sname){
         Actor newActor = new Actor(fname, sname);
 
