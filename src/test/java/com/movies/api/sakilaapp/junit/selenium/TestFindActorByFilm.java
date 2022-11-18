@@ -7,6 +7,8 @@ import org.junit.After;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNot.not;
+
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,11 +23,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
+
+import java.time.*;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class TestRandom {
+
+public class TestFindActorByFilm {
     private WebDriver driver;
     private Map<String, Object> vars;
     JavascriptExecutor js;
@@ -41,12 +46,25 @@ public class TestRandom {
         driver.quit();
     }
     @Test
-    public void randomTest() {
+    public void findActorByFilm() {
         driver.get("http://localhost:3000/");
-        driver.manage().window().setSize(new Dimension(1294, 951));
-        driver.findElement(By.cssSelector("li:nth-child(3) button")).click();
-        driver.findElement(By.cssSelector("li:nth-child(4) button")).click();
-        driver.findElement(By.cssSelector("li:nth-child(5) button")).click();
-        driver.findElement(By.cssSelector("li:nth-child(2) button")).click();
+        driver.manage().window().setSize(new Dimension(1294, 1440));
+        {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".filmSection:nth-child(1) .viewButton")));
+        }
+        driver.findElement(By.cssSelector(".filmSection:nth-child(1) .viewButton")).click();
+        js.executeScript("window.scrollTo(0,178)");
+        {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".actorDetails > a:nth-child(3) p")));
+        }
+        driver.findElement(By.cssSelector(".actorDetails > a:nth-child(3) p")).click();
+        {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector((".actorName"))));
+        }
+        String resultText = driver.findElement(By.cssSelector(".actorName")).getText();
+        Assertions.assertEquals("PENELOPE GUINESS", resultText);
     }
 }

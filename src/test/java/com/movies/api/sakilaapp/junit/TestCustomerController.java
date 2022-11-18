@@ -20,7 +20,7 @@ class TestCustomerController {
     private final CityRepository cityRepository = mock(CityRepository.class);
 
     private final AddressRepository addressRepository = mock(AddressRepository.class);
-    
+
 
     CustomerController mockApp = new CustomerController(customerRepository, rentalRepository, countryRepository, addressRepository,cityRepository);
 

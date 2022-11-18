@@ -71,7 +71,7 @@ public class CustomerController {
     }
 
 
-    @PostMapping("/api/newCustomer/{fname}+{sname}+{email}+{address}+{district}+{city_id}+{postal_code}+{phone}")
+    @PostMapping("/api/newCustomer/{fname}+{sname}+{email}+{address}+{district}+{cityID}+{postalCode}+{phone}")
     public Customer postCustomer(@PathVariable String fname, @PathVariable String sname, @PathVariable String email,
                                  @PathVariable String address, @PathVariable String district,
                                  @PathVariable int cityID, @PathVariable String postalCode,
