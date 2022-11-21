@@ -47,13 +47,6 @@ public class FilmController extends SakilaAppApplication {
         return filmRespository.findByQuery(query, start, end);
     }
 
-    @GetMapping("/films")
-    public ModelAndView getAllFilms() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("films");
-        modelAndView.addObject("filmList", filmRespository.findAll());
-        return modelAndView;
-    }
 
     @GetMapping("/api/films/{id}")
     public Film getFilmAPI(@PathVariable int id) {
@@ -65,28 +58,6 @@ public class FilmController extends SakilaAppApplication {
         return filmRespository.findByCategoryID(id);
     }
 
-    @GetMapping("/films/{id}")
-    public ModelAndView getFilm(@PathVariable int id) throws JSONException, InterruptedException {
-
-        filmRespository.updateScore(id);
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("specificFilm");
-        modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(IndexOutOfBoundsException::new));
-        List<CategoryFilm> category = categoryFilmRepository.findbyFilmID(id);
-        String filmCategory = categoryFilmRepository.findCategoryByFilmID(id);
-        modelAndView.addObject("suggestedFilms", categoryFilmRepository.findByCategoryID(category.get(0).getCategoryID()));
-        modelAndView.addObject("category", filmCategory);
-        modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
-
-//		// REST REQUEST FUNCTION
-        Film input = filmRespository.findById(id).orElse(null);
-
-        if(input != null) {
-            modelAndView.addObject("image", getAi().fetchMethod(getAi().postMethod(input.getDesc())));
-        }
-        return modelAndView;
-    }
 
     @GetMapping("/api/rfilms/{id}")
     public List<Film> getRFilmAPI(@PathVariable int id) {
@@ -119,4 +90,36 @@ public class FilmController extends SakilaAppApplication {
         filmRespository.deleteById(id);
     }
 
+    // NOT NEEDED ANYMORE //
+
+    @GetMapping("/films/{id}")
+    public ModelAndView getFilm(@PathVariable int id) throws JSONException, InterruptedException {
+
+        filmRespository.updateScore(id);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("specificFilm");
+        modelAndView.addObject("film", filmRespository.findById(id).orElseThrow(IndexOutOfBoundsException::new));
+        List<CategoryFilm> category = categoryFilmRepository.findbyFilmID(id);
+        String filmCategory = categoryFilmRepository.findCategoryByFilmID(id);
+        modelAndView.addObject("suggestedFilms", categoryFilmRepository.findByCategoryID(category.get(0).getCategoryID()));
+        modelAndView.addObject("category", filmCategory);
+        modelAndView.addObject("actorList", filmActorRepository.findByFilmID(id));
+
+//		// REST REQUEST FUNCTION
+        Film input = filmRespository.findById(id).orElse(null);
+
+        if(input != null) {
+            modelAndView.addObject("image", getAi().fetchMethod(getAi().postMethod(input.getDesc())));
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("/films")
+    public ModelAndView getAllFilms() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("films");
+        modelAndView.addObject("filmList", filmRespository.findAll());
+        return modelAndView;
+    }
 }
